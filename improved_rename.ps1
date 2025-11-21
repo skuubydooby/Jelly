@@ -1,4 +1,4 @@
-﻿# Intelligent Complete Renaming Script
+# Intelligent Complete Renaming Script
 # Recursively finds and renames EVERYTHING - files, folders, content
 # Usage: .\rename.ps1 -OldName "Interop" -NewName "Interop"
 
@@ -41,9 +41,9 @@ foreach ($ext in $textExtensions) {
     $allFiles += Get-ChildItem -Path $ProjectPath -Recurse -Filter $ext -File -ErrorAction SilentlyContinue
 }
 
-# Add files without extensions (like Dockerfile, Makefile, etc.)
-$noExtensionFiles = Get-ChildItem -Path $ProjectPath -Recurse -File -ErrorAction SilentlyContinue | Where-Object { -not $_.Extension }
-$allFiles += $noExtensionFiles
+# Add Dockerfile specifically
+$dockerfiles = Get-ChildItem -Path $ProjectPath -Recurse -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -eq "Dockerfile" }
+$allFiles += $dockerfiles
 
 Write-Host "Found $($allFiles.Count) files to check..." -ForegroundColor White
 
@@ -63,20 +63,29 @@ foreach ($file in $allFiles) {
         $content = [System.IO.File]::ReadAllText($file.FullName, $encoding)
         $originalContent = $content
         
-        # Count how many times the old name appears
-        $matches = ([regex]::Matches($content, "\b$OldName\b")).Count
+        # Count how many times the old name appears (case-insensitive for paths, case-sensitive otherwise)
+        $matchCount = 0
+        $matchCount += ([regex]::Matches($content, "\b$OldName\b", [System.Text.RegularExpressions.RegexOptions]::None)).Count
+        $matchCount += ([regex]::Matches($content, "/$OldName/", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)).Count
+        $matchCount += ([regex]::Matches($content, "/$OldName\b", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)).Count
+        $matchCount += ([regex]::Matches($content, "\b$OldName/", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)).Count
         
-        if ($matches -gt 0) {
+        if ($matchCount -gt 0) {
             # Replace namespace declarations
             $content = $content -replace "namespace\s+$OldName\b", "namespace $NewName"
             
             # Replace using statements
             $content = $content -replace "using\s+$OldName\b", "using $NewName"
             
-            # Replace in paths
+            # Replace in Windows paths
             $content = $content -replace "\\$OldName\\", "\$NewName\"
             $content = $content -replace "$OldName\\", "$NewName\"
             $content = $content -replace "\\$OldName\.", "\$NewName."
+            
+            # Replace in Unix paths (case-insensitive for Dockerfiles, scripts, etc.)
+            $content = $content -replace "(?i)/$OldName/", "/$NewName/"
+            $content = $content -replace "(?i)/$OldName\b", "/$NewName"
+            $content = $content -replace "(?i)\b$OldName/", "$NewName/"
             
             # Replace project references
             $content = $content -replace """$OldName""", """$NewName"""
@@ -89,6 +98,8 @@ foreach ($file in $allFiles) {
             # Replace all other occurrences with word boundaries
             $content = $content -replace "\b$OldName\.", "$NewName."
             $content = $content -replace "\b$OldName\b", $NewName
+            
+            $matches = $matchCount
             
             if ($content -ne $originalContent) {
                 if (-not $DryRun) {
