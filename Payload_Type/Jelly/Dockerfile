@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3.11-venv \
     wget \
-    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 # Build and install donut
@@ -30,14 +29,12 @@ WORKDIR /Mythic/
 # Copy project files
 COPY [".", "."]
 
-# Download System.Management.Automation DLL - NOTE THE PATH CHANGE
+# Download System.Management.Automation DLL from Apollo's repo
 RUN mkdir -p /Mythic/Jelly/agent_code/packages/System.Management.Automation6.1.7 && \
-    wget -O /tmp/psautomation.zip https://www.nuget.org/api/v2/package/System.Management.Automation/7.4.6 && \
-    unzip -q /tmp/psautomation.zip -d /tmp/psautomation && \
-    find /tmp/psautomation -name "System.Management.Automation.dll" -exec cp {} /Mythic/Jelly/agent_code/packages/System.Management.Automation6.1.7/ \; && \
-    rm -rf /tmp/psautomation /tmp/psautomation.zip
+    wget -O /Mythic/Jelly/agent_code/packages/System.Management.Automation6.1.7/System.Management.Automation.dll \
+    https://raw.githubusercontent.com/MythicAgents/Apollo/master/Payload_Type/apollo/apollo/agent_code/packages/System.Management.Automation6.1.7/System.Management.Automation.dll
 
-# Restore .NET dependencies - NOTE THE PATH CHANGE  
+# Restore .NET dependencies
 RUN cd Jelly/agent_code && \
     dotnet restore && \
     rm -f donut && \
@@ -46,5 +43,5 @@ RUN cd Jelly/agent_code && \
 # Copy COFFLoader.dll to root
 RUN cd Jelly/agent_code && cp COFFLoader.dll /COFFLoader.dll
 
-# Runtime command - NOTE THE PATH CHANGE
+# Runtime command
 CMD ["bash", "-c", "cp /donut Jelly/agent_code/donut && /venv/bin/python main.py"]
