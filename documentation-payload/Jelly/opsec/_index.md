@@ -12,7 +12,7 @@ Below are considerations about Jelly's underlying behavior that may affect decis
 - [API Resolvers](/agents/Jelly/opsec/apiresolvers/)
 - [Evasion](/agents/Jelly/opsec/evasion/)
 - [Fork and Run Commands](/agents/Jelly/opsec/forkandrun/)
-- [Injection](/agents/Jelly/opsec/injection/)
+- [topping](/agents/Jelly/opsec/topping/)
 
 ## Example Artifacts
 

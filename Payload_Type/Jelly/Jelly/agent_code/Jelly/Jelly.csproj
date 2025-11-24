@@ -19,7 +19,7 @@
     <ProjectReference Include="..\DInvokeResolver\DInvokeResolver.csproj" />
     <ProjectReference Include="..\EncryptedFileStore\EncryptedFileStore.csproj" />
     <ProjectReference Include="..\HttpProfile\HttpProfile.csproj" />
-    <ProjectReference Include="..\Injection\Injection.csproj" />
+    <ProjectReference Include="..\topping\topping.csproj" />
     <ProjectReference Include="..\KerberosTickets\KerberosTickets.csproj" />
     <ProjectReference Include="..\NamedPipeProfile\NamedPipeProfile.csproj" />
     <ProjectReference Include="..\PlaintextCrypto\PlaintextCryptography.csproj" />

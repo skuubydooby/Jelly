@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace DInvokeResolver.DInvoke.Injection
+namespace DInvokeResolver.DInvoke.topping
 {
     /// <summary>
     /// Provides static functions for performing injection using a combination of Allocation and Execution components.

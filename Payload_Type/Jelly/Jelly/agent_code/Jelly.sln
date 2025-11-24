@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "Tasks\Tasks.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TcpProfile", "TcpProfile\TcpProfile.csproj", "{ADD40B1E-3C2E-4046-B574-FA0ED70FC64D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Injection", "Injection\Injection.csproj", "{E4724425-FC2D-40AE-9506-553D5D9DD929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "topping", "topping\topping.csproj", "{E4724425-FC2D-40AE-9506-553D5D9DD929}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Process", "Process\Process.csproj", "{6008A59E-80A4-4790-8FE3-01DE201D71B3}"
 EndProject

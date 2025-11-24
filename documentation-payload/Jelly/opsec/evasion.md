@@ -31,6 +31,6 @@ Here be dragons! Changing the PPID of processes can cause agent stability issues
 
 This prevents non-Microsoft signed DLLs from loading into your child processes. While most EDR software is now signed by Microsoft, this can occasionally help prevent side-loading of unwanted DLLs.
 
-### Injection Technique Management
+### topping Technique Management
 
-Jelly has several post-exploitation tasks that leverage process injection. A full discussion of this can be found at the [injection documentation page](/agents/Jelly/opsec/injection).
+Jelly has several post-exploitation tasks that leverage process injection. A full discussion of this can be found at the [injection documentation page](/agents/Jelly/opsec/topping).

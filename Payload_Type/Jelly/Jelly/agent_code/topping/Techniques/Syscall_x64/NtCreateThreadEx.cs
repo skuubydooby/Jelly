@@ -2,11 +2,11 @@
 using System.Runtime.InteropServices;
 using Interop.Classes.Core;
 using Interop.Interfaces;
-using Injection.Shared;
+using topping.Shared;
 
-namespace Injection.Techniques.Syscall_x64
+namespace topping.Techniques.Syscall_x64
 {
-    public class NtCreateThreadEx : InjectionTechnique
+    public class NtCreateThreadEx : toppingTechnique
     {
         private USysCall64 _syscall;
 

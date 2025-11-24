@@ -7,8 +7,8 @@ namespace Interop.Interfaces
     {
         string[] GetTechniques();
         bool SetTechnique(string technique);
-        InjectionTechnique CreateInstance(byte[] code, int pid);
-        InjectionTechnique CreateInstance(byte[] code, IntPtr hProcess);
+        toppingTechnique CreateInstance(byte[] code, int pid);
+        toppingTechnique CreateInstance(byte[] code, IntPtr hProcess);
         bool LoadTechnique(byte[] assembly, string name);
 
         Type GetCurrentTechnique();

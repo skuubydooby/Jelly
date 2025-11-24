@@ -5,39 +5,39 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 
-namespace Injection
+namespace topping
 {
-    public class InjectionManager : IInjectionManager
+    public class toppingManager : IInjectionManager
     {
         private IAgent _agent;
         private Type _currentTechnique = typeof(Techniques.CreateRemoteThread.CreateRemoteThread);
         private ConcurrentDictionary<string, Type> _loadedTechniques = new ConcurrentDictionary<string, Type>();
-        public InjectionManager(IAgent agent)
+        public toppingManager(IAgent agent)
         {
             _agent = agent;
             foreach (Type t in Assembly.GetExecutingAssembly().GetTypes())
             {
-                if (t.Namespace != null && t.Namespace.StartsWith("Injection.Techniques") &&
+                if (t.Namespace != null && t.Namespace.StartsWith("topping.Techniques") &&
                     t.IsPublic &&
                     t.IsClass &&
                     t.IsVisible)
                 {
-                    string k = t.FullName.Replace("Injection.Techniques.", "");
+                    string k = t.FullName.Replace("topping.Techniques.", "");
                     _loadedTechniques[k] = t;
                 }
             }
         }
 
-        public InjectionTechnique CreateInstance(byte[] code, int pid)
+        public toppingTechnique CreateInstance(byte[] code, int pid)
         {
-            return (InjectionTechnique)Activator.CreateInstance(
+            return (toppingTechnique)Activator.CreateInstance(
                 _currentTechnique,
                 new object[] { _agent, code, pid });
         }
 
-        public InjectionTechnique CreateInstance(byte[] code, IntPtr hProcess)
+        public toppingTechnique CreateInstance(byte[] code, IntPtr hProcess)
         {
-            return (InjectionTechnique)Activator.CreateInstance(
+            return (toppingTechnique)Activator.CreateInstance(
                 _currentTechnique,
                 new object[] { _agent, code, hProcess });
         }

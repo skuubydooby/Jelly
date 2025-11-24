@@ -144,7 +144,7 @@ Lastly, the associated browser script will do row highlighting based on the proc
 
 Jelly can cache files for expeditious task execution. In general, control flow follows the `register_file` command followed by whatever command you wish to execute (`execute_assembly`, `powerpick`, `execute_pe`, etc.). These files are cached client side via DPAPI encrypted AES256 blobs, preventing their signatures being exposed outside of task execution.
 
-### Dynamic Injection Techniques
+### Dynamic topping Techniques
 
 The agent can change what code injection technique is in use by post-exploitation jobs that require injection through a suite of injection commands. Currently, injection techniques that are supported:
 

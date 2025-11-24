@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Interop.Classes.Core
 {
-    public abstract class InjectionTechnique : IInjectionTechnique
+    public abstract class toppingTechnique : IInjectionTechnique
     {
         protected byte[] _code;
         protected int _processId;
@@ -30,11 +30,11 @@ namespace Interop.Classes.Core
         // Dangerous - should only be used when resolving
         // critical functions _pOpenProcess, _pDuplicateHandle,
         // and _pCloseHandle.
-        public InjectionTechnique()
+        public toppingTechnique()
         {
             
         }
-        public InjectionTechnique(IAgent agent, byte[] code, int pid)
+        public toppingTechnique(IAgent agent, byte[] code, int pid)
         {
             _code = code;
             _processId = pid;
@@ -43,7 +43,7 @@ namespace Interop.Classes.Core
             _hProcess = _pOpenProcess(ProcessAccessFlags.MAXIMUM_ALLOWED, false, pid);
         }
 
-        public InjectionTechnique(IAgent agent, byte[] code, IntPtr hProcess)
+        public toppingTechnique(IAgent agent, byte[] code, IntPtr hProcess)
         {
             _code = code;
             _agent = agent;
@@ -63,7 +63,7 @@ namespace Interop.Classes.Core
             }
         }
 
-        ~InjectionTechnique()
+        ~toppingTechnique()
         {
             if (_hProcess != IntPtr.Zero)
             {

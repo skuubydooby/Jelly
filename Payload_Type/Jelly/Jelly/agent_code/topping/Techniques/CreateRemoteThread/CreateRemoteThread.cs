@@ -2,11 +2,11 @@
 using Interop.Classes.Core;
 using Interop.Interfaces;
 using System;
-using static Injection.Shared.Win32;
+using static topping.Shared.Win32;
 
-namespace Injection.Techniques.CreateRemoteThread
+namespace topping.Techniques.CreateRemoteThread
 {
-    public class CreateRemoteThread : InjectionTechnique
+    public class CreateRemoteThread : toppingTechnique
     {
         private delegate IntPtr VirtualAllocEx(
            IntPtr hProcess,

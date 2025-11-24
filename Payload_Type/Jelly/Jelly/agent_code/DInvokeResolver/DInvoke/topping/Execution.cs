@@ -3,10 +3,10 @@ using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
 
-namespace DInvokeResolver.DInvoke.Injection
+namespace DInvokeResolver.DInvoke.topping
 {
     /// <summary>
-    /// Base class for Injection strategies.
+    /// Base class for topping strategies.
     /// </summary>
     public abstract class ExecutionTechnique
     {

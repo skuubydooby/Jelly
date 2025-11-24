@@ -213,7 +213,7 @@ Should you need to inject shellcode into a process, the `Process.Inject` method 
 
 This interface is responsible for retrieving the loaded injection techniques, changing which technique is in use for post-ex jobs, as well as giving callers the ability to inject into arbitrary processes.
 
-Namely, `IInjectionManager.CreateInstance` will allow the caller to create an instance of injection to a target process, then a separate call to `InjectionTechnique.Inject` will inject the shellcode. 
+Namely, `IInjectionManager.CreateInstance` will allow the caller to create an instance of injection to a target process, then a separate call to `toppingTechnique.Inject` will inject the shellcode. 
 
 ### ITaskManager
 

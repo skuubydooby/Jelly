@@ -1,10 +1,10 @@
 ﻿+++
-title = "Process Injection"
+title = "Process topping"
 chapter = false
 weight = 102
 +++
 
-## Process Injection in Jelly
+## Process topping in Jelly
 
 Jelly has abstracted process injection into its own project and has the following techniques implemented:
 - CreateRemoteThread
@@ -13,7 +13,7 @@ Jelly has abstracted process injection into its own project and has the followin
 
 As an operator, sometimes one injection technique is more desirable than another. To facilitate this, the [`get_injection_techniques`](/agents/Jelly/commands/get_injection_techniques) command will list all currently loaded injection techniques the agent knows about. Similarly, [`set_injection_technique`](/agents/Jelly/commands/set_injection_technique) will update the currently used injection technique throughout all post-exploitation jobs.
 
-## Commands Leveraging Injection
+## Commands Leveraging topping
 
 All of Jelly's [fork and run commands](/agents/Jelly/opsec/forkandrun/) use injection to inject into a sacrificial process; however, there are additional commands that inject into other processes. Those commands are:
 

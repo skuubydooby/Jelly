@@ -26,7 +26,7 @@ namespace Jelly.Agent
             FileManager = new AM.Files.FileManager(this);
             IdentityManager = new AM.Identity.IdentityManager(this);
             ProcessManager = new Process.ProcessManager(this);
-            InjectionManager = new Injection.InjectionManager(this);
+            toppingManager = new topping.toppingManager(this);
             TicketManager = new KerberosTickets.KerberosTicketManager(this);
             
 

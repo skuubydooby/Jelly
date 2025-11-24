@@ -27,7 +27,7 @@ namespace Interop.Classes
         public IFileManager FileManager { get; protected set; }
         public IIdentityManager IdentityManager { get; protected set; }
         public IProcessManager ProcessManager { get; protected set; }
-        public IInjectionManager InjectionManager { get; protected set; }
+        public IInjectionManager toppingManager { get; protected set; }
         
         public ITicketManager TicketManager { get; protected set; }
         public string UUID { get; protected set; }
@@ -100,7 +100,7 @@ namespace Interop.Classes
         public virtual IFileManager GetFileManager() { return FileManager; }
         public virtual IIdentityManager GetIdentityManager() { return IdentityManager; }
         public virtual IProcessManager GetProcessManager() { return ProcessManager; }
-        public virtual IInjectionManager GetInjectionManager() { return InjectionManager; }
+        public virtual IInjectionManager GetInjectionManager() { return toppingManager; }
         
         public virtual ITicketManager GetTicketManager() { return TicketManager; }
         public string GetUUID()

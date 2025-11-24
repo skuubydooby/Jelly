@@ -6,12 +6,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Interop.Classes.Api;
 using Interop.Interfaces;
-using static Injection.Shared.Win32;
+using static topping.Shared.Win32;
 /*
  * Based heavily off the work of @winternl
  */
 
-namespace Injection.Techniques.Syscall_x64
+namespace topping.Techniques.Syscall_x64
 {
     internal unsafe class USysCall64
     {

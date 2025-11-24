@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Injection.Shared
+namespace topping.Shared
 {
     public static class Win32
     {

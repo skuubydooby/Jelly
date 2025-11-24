@@ -3,11 +3,11 @@ using System.Diagnostics;
 using Interop.Classes.Api;
 using Interop.Classes.Core;
 using Interop.Interfaces;
-using static Injection.Shared.Win32;
+using static topping.Shared.Win32;
 
-namespace Injection.Techniques.EarlyBird
+namespace topping.Techniques.EarlyBird
 {
-    public class QueueUserAPC : InjectionTechnique
+    public class QueueUserAPC : toppingTechnique
     {
         private enum ThreadAccessRights : UInt32
         {

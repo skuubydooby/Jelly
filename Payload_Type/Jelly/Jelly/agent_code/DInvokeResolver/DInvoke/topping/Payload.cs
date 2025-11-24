@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DInvokeResolver.DInvoke.Injection
+namespace DInvokeResolver.DInvoke.topping
 {
     /// <summary>
     /// Base class for all types of payloads.
