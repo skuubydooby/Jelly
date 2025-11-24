@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "psinject"
 chapter = false
 weight = 103
@@ -10,7 +10,7 @@ Artifacts Generated: Process Inject
 {{% /notice %}}
 
 ## Summary
-Execute PowerShell commands in a remote process. Leverages the currently set injection technique to inject the PowerShell loader.
+Execute PowerShell commands in a remote process. Leverages the currently set topping technique to inject the PowerShell loader.
 
 ### Arguments (Positional or Popup)
 #### PID

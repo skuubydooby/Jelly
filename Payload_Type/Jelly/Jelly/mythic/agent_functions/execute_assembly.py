@@ -198,7 +198,7 @@ class ExecuteAssemblyCommand(CommandBase):
             # create
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
-                UpdateStatus=f"building injection stub"
+                UpdateStatus=f"building topping stub"
             ))
             await self.build_exeasm()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(

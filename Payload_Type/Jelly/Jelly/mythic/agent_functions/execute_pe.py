@@ -182,7 +182,7 @@ class ExecutePECommand(CommandBase):
         if not path.exists(EXECUTE_PE_PATH):
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
-                UpdateStatus=f"building injection stub"
+                UpdateStatus=f"building topping stub"
             ))
             await self.build_exepe()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(

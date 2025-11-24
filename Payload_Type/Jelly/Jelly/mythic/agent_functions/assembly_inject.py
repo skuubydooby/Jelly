@@ -1,4 +1,4 @@
-from distutils.dir_util import copy_tree
+﻿from distutils.dir_util import copy_tree
 import shutil
 import tempfile
 from mythic_container.MythicCommandBase import *
@@ -134,7 +134,7 @@ class AssemblyInjectCommand(CommandBase):
         if not path.exists(EXEECUTE_ASSEMBLY_PATH):
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
-                UpdateStatus=f"building injection stub"
+                UpdateStatus=f"building topping stub"
             ))
             await self.build_exeasm()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(

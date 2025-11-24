@@ -3,7 +3,7 @@
 namespace DInvokeResolver.DInvoke.topping
 {
     /// <summary>
-    /// Provides static functions for performing injection using a combination of Allocation and Execution components.
+    /// Provides static functions for performing topping using a combination of Allocation and Execution components.
     /// </summary>
     /// <author>The Wover (@TheRealWover)</author>
     public static class Injector

@@ -24,7 +24,7 @@ namespace Tasks
             MythicTaskResponse resp;
             if (_agent.GetInjectionManager().SetTechnique(_data.Parameters))
             {
-                resp = CreateTaskResponse($"Set injection technique to {_data.Parameters}", true);
+                resp = CreateTaskResponse($"Set topping technique to {_data.Parameters}", true);
             }
             else
             {

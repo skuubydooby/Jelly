@@ -1,10 +1,10 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define GET_INJECTION_TECHNIQUES
+#define GET_TOPPING_TECHNIQUES
 #endif
 
-#if GET_INJECTION_TECHNIQUES
+#if GET_TOPPING_TECHNIQUES
 
 using Interop.Classes;
 using Interop.Interfaces;
@@ -15,7 +15,7 @@ using System.Runtime.Serialization;
 
 namespace Tasks
 {
-    public class get_injection_techniques : Tasking
+    public class get_topping_techniques : Tasking
     {
         [DataContract]
         internal struct toppingTechniqueResult
@@ -25,7 +25,7 @@ namespace Tasks
             [DataMember(Name = "is_current")]
             public bool IsCurrent;
         }
-        public get_injection_techniques(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
+        public get_topping_techniques(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
         {
         }
         
@@ -33,8 +33,8 @@ namespace Tasks
         public override void Start()
         {
             MythicTaskResponse resp;
-            string[] techniques = _agent.GetInjectionManager().GetTechniques();
-            Type cur = _agent.GetInjectionManager().GetCurrentTechnique();
+            string[] techniques = _agent.GetToppingManager().GetTechniques();
+            Type cur = _agent.GetToppingManager().GetCurrentTechnique();
             List<toppingTechniqueResult> results = new List<toppingTechniqueResult>();
             foreach (string t in techniques)
             {

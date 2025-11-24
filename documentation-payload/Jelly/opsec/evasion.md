@@ -12,7 +12,7 @@ Jelly has several commands to modify post-exploitation parameters when performin
 - [`spawnto_x86`](/agents/Jelly/commands/spawnto_x86/)
 - [`ppid`](/agents/Jelly/commands/ppid/)
 - [`blockdlls`](/agents/Jelly/commands/blockdlls/)
-- [`get_injection_techniques`](/agents/Jelly/commands/get_injection_techniques/)
+- [`get_topping_techniques`](/agents/Jelly/commands/get_topping_techniques/)
 - [`set_injection_technique`](/agents/Jelly/commands/set_injection_technique/)
 
 ### SpawnTo Commands
@@ -33,4 +33,4 @@ This prevents non-Microsoft signed DLLs from loading into your child processes. 
 
 ### topping Technique Management
 
-Jelly has several post-exploitation tasks that leverage process injection. A full discussion of this can be found at the [injection documentation page](/agents/Jelly/opsec/topping).
+Jelly has several post-exploitation tasks that leverage process topping. A full discussion of this can be found at the [topping documentation page](/agents/Jelly/opsec/topping).

@@ -159,7 +159,7 @@ class InjectCommand(CommandBase):
         payload = None
         if taskData.args.get_arg("regenerate"):
             newPayloadResp = await SendMythicRPCPayloadCreateFromUUID(MythicRPCPayloadCreateFromUUIDMessage(
-                TaskID=taskData.Task.ID, PayloadUUID=str_uuid, NewDescription="{}'s injection into PID {}".format(taskData.Task.OperatorUsername, str(taskData.args.get_arg("pid")))
+                TaskID=taskData.Task.ID, PayloadUUID=str_uuid, NewDescription="{}'s topping into PID {}".format(taskData.Task.OperatorUsername, str(taskData.args.get_arg("pid")))
             ))
             if newPayloadResp.Success:
                 # we know a payload is building, now we want it

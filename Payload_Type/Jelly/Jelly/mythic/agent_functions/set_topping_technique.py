@@ -1,4 +1,4 @@
-from mythic_container.MythicCommandBase import *
+﻿from mythic_container.MythicCommandBase import *
 import json
 
 
@@ -10,7 +10,7 @@ class SetInjectionTechniqueArguments(TaskArguments):
 
     async def parse_arguments(self):
         if len(self.command_line.strip()) == 0:
-            raise Exception("set_injection_technique requires an injection technique listed from get_injection_technique to be passed via the command line.\n\tUsage: {}".format(SetInjectionTechniqueCommand.help_cmd))
+            raise Exception("set_injection_technique requires an topping technique listed from get_injection_technique to be passed via the command line.\n\tUsage: {}".format(SetInjectionTechniqueCommand.help_cmd))
         pass
 
 
@@ -18,7 +18,7 @@ class SetInjectionTechniqueCommand(CommandBase):
     cmd = "set_injection_technique"
     needs_admin = False
     help_cmd = "set_injection_technique [technique]"
-    description = "Set the injection technique used in post-ex jobs that require injection. Must be a technique listed in the output of `list_injection_techniques`."
+    description = "Set the topping technique used in post-ex jobs that require topping. Must be a technique listed in the output of `list_injection_techniques`."
     version = 2
     author = "@djhohnstein"
     argument_class = SetInjectionTechniqueArguments

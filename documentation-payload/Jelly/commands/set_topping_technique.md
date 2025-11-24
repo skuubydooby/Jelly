@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "set_injection_technique"
 chapter = false
 weight = 103
@@ -6,7 +6,7 @@ hidden = false
 +++
 
 ## Summary
-Change the process injection technique the agent will use for post-exploitation jobs.
+Change the process topping technique the agent will use for post-exploitation jobs.
 
 ## Usage (Positional)
 ```

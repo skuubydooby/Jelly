@@ -1,4 +1,4 @@
-import os
+﻿import os
 from mythic_container.MythicCommandBase import *
 from uuid import uuid4
 import json
@@ -94,7 +94,7 @@ class ScreenshotInjectCommand(CommandBase):
         if not path.exists(SCREENSHOT_INJECT):
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
-                UpdateStatus=f"building injection stub"
+                UpdateStatus=f"building topping stub"
             ))
             await self.build_screenshotinject()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(

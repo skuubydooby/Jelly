@@ -87,7 +87,7 @@ namespace topping.Techniques.EarlyBird
                 throw new Exception($"Process {_processId} has no threads. Aborting.");
             if (proc.Threads[0].ThreadState != ThreadState.Wait)
             {
-                throw new Exception("QueueUserAPC uses early bird injection and requires the thread to be in an initialized state.");
+                throw new Exception("QueueUserAPC uses early bird topping and requires the thread to be in an initialized state.");
             }
             hThread = _pOpenThread(ThreadAccessRights.THREAD_ALL_ACCESS, true, (uint)proc.Threads[0].Id);
 

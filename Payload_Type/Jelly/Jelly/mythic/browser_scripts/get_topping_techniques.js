@@ -1,4 +1,4 @@
-function(task, responses) {
+﻿function(task, responses) {
     if (task.status.includes("error")) {
         const combined = responses.reduce((prev, cur) => {
             return prev + cur;
@@ -47,7 +47,7 @@ function(task, responses) {
             "table": [{
                 "headers": headers,
                 "rows": rows,
-                "title": "Loaded Injection Techniques",
+                "title": "Loaded Topping Techniques",
             }]
         };
     } else {

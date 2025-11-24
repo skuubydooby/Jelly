@@ -56,7 +56,7 @@ namespace Interop.Interfaces
         // Return IProcessManager interface. Used for creating new processes.
         IProcessManager GetProcessManager();
 
-        // Return IInjectionManager interface. Used for managing how injection is performed and injecting into processes
+        // Return IInjectionManager interface. Used for managing how topping is performed and injecting into processes
         IInjectionManager GetInjectionManager();
         
         // Return ITicketManager interface. Used for managing Kerberos tickets.

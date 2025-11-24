@@ -41,7 +41,7 @@ execute_assembly | `execute_assembly -Assembly [assembly.exe] -Arguments [args]`
 execute_coff | `execute_coff -Coff [object.x64.o] -Function [go] -Timeout [30] [-Arguments [args]]`                             | Execute a object file (BOF) that's been registered with `register_file`
 execute_pe | `execute_pe -PE [binary.exe] -Arguments [args]`                                                                    | Execute a statically compiled executable that's been registered with `register_file`
 exit | `exit`                                                                                                                   | Task agent to exit.
-get_injection_techniques | `get_injection_techniques`                                                                           | Show currently registered injection techniques as well as the current technique.
+get_topping_techniques | `get_topping_techniques`                                                                           | Show currently registered topping techniques as well as the current technique.
 getprivs | `getprivs`                                                                                                           | Enable as many privileges as possible for the current access token.
 ifconfig | `ifconfig`                                                                                                           | Get Network Adapters and Interfaces
 inject | `inject`                                                                                                               | Inject a new payload into a remote process.
@@ -81,7 +81,7 @@ run | `run -Executable [binary.exe] -Arguments [args]`                          
 sc | `sc [-Query\|-Start\|-Stop\|-Create\|-Delete] [-Computer [computername] -DisplayName [display_name] -ServiceName [servicename] -BinPath [binpath]]` | .NET implementation of the Service Control Manager.
 screenshot_inject | `screenshot_inject -PID [pid] [-Interval [int] -Count [int]]`                                               | Get a screenshot of the desktop session associated with `PID` every `Interval` seconds for `Count` screenshots.
 screenshot | `screenshot`                                                                                                       | Get a screenshot of the current screen.
-set_injection_technique | `set_injection_technique [technique]`                                                                 | Set the injection technique used in post-ex jobs that require injection.
+set_injection_technique | `set_injection_technique [technique]`                                                                 | Set the topping technique used in post-ex jobs that require topping.
 shell | `shell [command]`                                                                                                       | Run a shell command which will translate to a process being spawned with command line: `cmd.exe /S /c [command]`
 shinject | `shinject`                                                                                                           | Inject given shellcode into a specified pid. Modal popup only.
 sleep | `sleep [seconds]`                                                                                                       | Set the callback interval of the agent in seconds.
@@ -146,12 +146,12 @@ Jelly can cache files for expeditious task execution. In general, control flow f
 
 ### Dynamic topping Techniques
 
-The agent can change what code injection technique is in use by post-exploitation jobs that require injection through a suite of injection commands. Currently, injection techniques that are supported:
+The agent can change what code topping technique is in use by post-exploitation jobs that require topping through a suite of topping commands. Currently, topping techniques that are supported:
 
 - CreateRemoteThread
 - QueueUserAPC (Early Bird)
 
-![injection](documentation-payload/Jelly/commands/images/get_injection_techniques.png)
+![topping](documentation-payload/Jelly/commands/images/get_topping_techniques.png)
 
 ### Job Tracking
 

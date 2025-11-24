@@ -29,7 +29,7 @@ namespace DInvokeResolver.DInvoke.topping
     }
 
     /// <summary>
-    /// Exception thrown when the type of a payload is not supported by a injection variant.
+    /// Exception thrown when the type of a payload is not supported by a topping variant.
     /// </summary>
     /// <author>The Wover (@TheRealWover)</author>
     public class PayloadTypeNotSupported : Exception

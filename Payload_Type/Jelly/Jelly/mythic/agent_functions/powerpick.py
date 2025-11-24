@@ -72,7 +72,7 @@ class PowerpickCommand(CommandBase):
         if not path.exists(POWERSHELL_HOST_PATH):
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
-                UpdateStatus=f"building injection stub"
+                UpdateStatus=f"building topping stub"
             ))
             await self.build_powershell()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(

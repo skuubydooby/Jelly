@@ -67,7 +67,7 @@ pre = "<b>2. </b>"
     * [ppid](/agents/Jelly/commands/ppid)
     * [spawnto_x64](/agents/Jelly/commands/spawnto_x64/)
     * [spawnto_x86](/agents/Jelly/commands/spawnto_x86/)
-    * [get_injection_techniques](/agents/Jelly/commands/get_injection_techniques/)
+    * [get_topping_techniques](/agents/Jelly/commands/get_topping_techniques/)
     * [set_injection_technique](/agents/Jelly/commands/set_injection_technique/)
 - Session Management
     * [spawn](/agents/Jelly/commands/spawn/)

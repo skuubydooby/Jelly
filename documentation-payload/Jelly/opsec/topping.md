@@ -6,16 +6,16 @@ weight = 102
 
 ## Process topping in Jelly
 
-Jelly has abstracted process injection into its own project and has the following techniques implemented:
+Jelly has abstracted process topping into its own project and has the following techniques implemented:
 - CreateRemoteThread
 - QueueUserAPC (early bird)
 - NtCreateThreadEx (via Syscalls)
 
-As an operator, sometimes one injection technique is more desirable than another. To facilitate this, the [`get_injection_techniques`](/agents/Jelly/commands/get_injection_techniques) command will list all currently loaded injection techniques the agent knows about. Similarly, [`set_injection_technique`](/agents/Jelly/commands/set_injection_technique) will update the currently used injection technique throughout all post-exploitation jobs.
+As an operator, sometimes one topping technique is more desirable than another. To facilitate this, the [`get_topping_techniques`](/agents/Jelly/commands/get_topping_techniques) command will list all currently loaded topping techniques the agent knows about. Similarly, [`set_injection_technique`](/agents/Jelly/commands/set_injection_technique) will update the currently used topping technique throughout all post-exploitation jobs.
 
 ## Commands Leveraging topping
 
-All of Jelly's [fork and run commands](/agents/Jelly/opsec/forkandrun/) use injection to inject into a sacrificial process; however, there are additional commands that inject into other processes. Those commands are:
+All of Jelly's [fork and run commands](/agents/Jelly/opsec/forkandrun/) use topping to inject into a sacrificial process; however, there are additional commands that inject into other processes. Those commands are:
 
 - [`assembly_inject`](/agents/Jelly/commands/assembly_inject/)
 - [`inject`](/agents/Jelly/commands/inject/)
@@ -25,5 +25,5 @@ All of Jelly's [fork and run commands](/agents/Jelly/opsec/forkandrun/) use inje
 - [`screenshot_inject`](/agents/Jelly/commands/screenshot_inject)
 
 {{% notice info %}}
-Some injection techniques are incompatible with the aforementioned commands. For example: If QueueUserAPC is in use, the above commands will fail as it leverages the early bird version of QueueUserAPC, not the APC bombing technique. 
+Some topping techniques are incompatible with the aforementioned commands. For example: If QueueUserAPC is in use, the above commands will fail as it leverages the early bird version of QueueUserAPC, not the APC bombing technique. 
 {{% /notice %}}

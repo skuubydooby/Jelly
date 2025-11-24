@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "assembly_inject"
 chapter = false
 weight = 103
@@ -11,7 +11,7 @@ Artifacts Generated: Process Inject
 
 ## Summary
 
-Inject the .NET assembly loader into a remote process and execute an assembly registered with `register_file`. This assembly is injected into the remote process using the injection technique currently specified by `get_injection_techniques`.
+Inject the .NET assembly loader into a remote process and execute an assembly registered with `register_file`. This assembly is injected into the remote process using the topping technique currently specified by `get_topping_techniques`.
 
 ### Arguments (Positional or Popup)
 

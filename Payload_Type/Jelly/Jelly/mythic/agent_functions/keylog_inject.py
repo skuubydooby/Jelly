@@ -1,4 +1,4 @@
-from distutils.dir_util import copy_tree
+﻿from distutils.dir_util import copy_tree
 import os
 import shutil
 import tempfile
@@ -73,7 +73,7 @@ class KeylogInjectCommand(CommandBase):
         if not path.exists(KEYLOG_INJECT_PATH):
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
-                UpdateStatus=f"building injection stub"
+                UpdateStatus=f"building topping stub"
             ))
             await self.build_keyloginject()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
