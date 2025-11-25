@@ -53,7 +53,7 @@ namespace Tasks
                     if (technique.topp())
                     {
                         resp = CreateTaskResponse(
-                            $"Injected code into {proc.ProcessName} ({proc.Id})", true, "completed",
+                            $"topped code into {proc.ProcessName} ({proc.Id})", true, "completed",
                             new IMythicMessage[]
                             {
                                 Artifact.ProcessInject(proc.Id, technique.GetType().Name)

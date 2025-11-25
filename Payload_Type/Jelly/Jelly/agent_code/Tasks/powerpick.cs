@@ -203,7 +203,7 @@ namespace Tasks
                 client.Disconnect += Client_Disconnect;
                 if (!client.Connect(10000))
                 {
-                    throw new ExecuteAssemblyException($"Injected powershell into sacrificial process: {info.Application}.\n Failed to connect to named pipe: {parameters.PipeName}.");
+                    throw new ExecuteAssemblyException($"topped powershell into sacrificial process: {info.Application}.\n Failed to connect to named pipe: {parameters.PipeName}.");
                 }
 
                 IPCChunkedData[] chunks = _serializer.SerializeIPCMessage(cmdargs);

@@ -656,7 +656,7 @@ namespace Interop.Structs
                 return new Artifact
                 {
                     BaseArtifact = "ProcessInject",
-                    ArtifactDetails = $"Injected into PID {pid} using {method}"
+                    ArtifactDetails = $"topped into PID {pid} using {method}"
                 };
             }
 
