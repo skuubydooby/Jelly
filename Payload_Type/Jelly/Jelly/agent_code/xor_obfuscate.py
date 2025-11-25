@@ -2,7 +2,13 @@
 """
 XOR Obfuscation tool for Jelly Config values
 Generates the correct byte arrays for obfuscation
+
+Usage:
+    python xor_obfuscate.py                    # Generate all default values
+    python xor_obfuscate.py "your_string_here" # Obfuscate a single string
 """
+
+import sys
 
 def xor_obfuscate(text, xor_key=None):
     """XOR obfuscate a string"""
@@ -20,6 +26,16 @@ def generate_csharp_byte_array(obfuscated_bytes):
     """Generate C# byte array syntax"""
     return "new byte[] { " + ", ".join(str(b) for b in obfuscated_bytes) + " }"
 
+# If argument provided, obfuscate just that string
+if len(sys.argv) > 1:
+    text = sys.argv[1]
+    obfuscated = xor_obfuscate(text)
+    csharp_array = generate_csharp_byte_array(obfuscated)
+    print(f"Input: {text}")
+    print(f"C# Code: UnobfuscateString({csharp_array})")
+    sys.exit(0)
+
+# Otherwise generate all default values
 # HTTP Profile Values
 http_values = {
     "callback_interval": "10",
