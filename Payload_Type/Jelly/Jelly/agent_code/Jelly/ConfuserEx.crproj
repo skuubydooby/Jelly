@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project outputDir="bin\obfuscated\" baseDir="bin\Release\net451\">
+  <rule pattern="true" inherit="false">
+    <protection id="constants" />
+    <protection id="anti ildasm" />
+  </rule>
+  <rule pattern="ns 'Jelly'" inherit="false">
+    <protection id="rename" action="rename" />
+    <protection id="constants" />
+    <protection id="controlflow" />
+  </rule>
+</project>
