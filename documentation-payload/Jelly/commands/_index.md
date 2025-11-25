@@ -22,17 +22,17 @@ pre = "<b>2. </b>"
     * [pth](/agents/Jelly/commands/pth/)
     * [dcsync](/agents/Jelly/commands/dcsync/)
 - User Exploitation
-    * [keylog_inject](/agents/Jelly/commands/keylog_inject/)
-    * [screenshot_inject](/agents/Jelly/commands/screenshot_inject/)
+    * [keylog_topp](/agents/Jelly/commands/keylog_topp/)
+    * [screenshot_topp](/agents/Jelly/commands/screenshot_topp/)
     * [screenshot](/agents/Jelly/commands/screenshot/)
 - .NET Assembly Commands
     * [inline_assembly](/agents/Jelly/commands/inline_assembly/)
     * [execute_assembly](/agents/Jelly/commands/execute_assembly/)
-    * [assembly_inject](/agents/Jelly/commands/assembly_inject/)
+    * [assembly_topp](/agents/Jelly/commands/assembly_topp/)
     * [register_assembly](/agents/Jelly/commands/register_assembly/)
 - PowerShell Commands
     * [powershell](/agents/Jelly/commands/powershell/)
-    * [psinject](/agents/Jelly/commands/psinject/)
+    * [pstopp](/agents/Jelly/commands/pstopp/)
     * [powerpick](/agents/Jelly/commands/powerpick/)
     * [powershell_import](/agents/Jelly/commands/powershell_import/)
 - File Operations
@@ -68,7 +68,7 @@ pre = "<b>2. </b>"
     * [spawnto_x64](/agents/Jelly/commands/spawnto_x64/)
     * [spawnto_x86](/agents/Jelly/commands/spawnto_x86/)
     * [get_topping_techniques](/agents/Jelly/commands/get_topping_techniques/)
-    * [set_injection_technique](/agents/Jelly/commands/set_injection_technique/)
+    * [set_toppion_technique](/agents/Jelly/commands/set_toppion_technique/)
 - Session Management
     * [spawn](/agents/Jelly/commands/spawn/)
     * [topp](/agents/Jelly/commands/topp/)
@@ -79,6 +79,6 @@ pre = "<b>2. </b>"
     * [netstat](/agents/Jelly/commands/netstat)
 - Miscellaneous
     * [printspoofer](/agents/Jelly/commands/printspoofer/)
-    * [shinject](/agents/Jelly/commands/shinject/)
+    * [shtopp](/agents/Jelly/commands/shtopp/)
     * [socks](/agents/Jelly/commands/socks/)
     * [execute_pe](/agents/Jelly/commands/execute_pe/)

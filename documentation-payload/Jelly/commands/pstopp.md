@@ -1,5 +1,5 @@
 ﻿+++
-title = "psinject"
+title = "pstopp"
 chapter = false
 weight = 103
 hidden = false
@@ -21,12 +21,12 @@ PowerShell command to be executed.
 
 ## Usage
 ```
-psinject -PID [pid] -Command [command]
+pstopp -PID [pid] -Command [command]
 ```
 
 Example
 ```
-psinject -PID 1234 -Command Get-Process
+pstopp -PID 1234 -Command Get-Process
 ```
 
 

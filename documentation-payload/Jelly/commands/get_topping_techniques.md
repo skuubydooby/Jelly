@@ -14,7 +14,7 @@ get_topping_techniques
 ```
 
 ## Detailed Summary
-The `get_topping_techniques` command displays the various process topping techniques the agent is capable of using for post-exploitation jobs. You can see the current technique being used by an agent with the [`get_topping_techniques`](/agents/Jelly/commands/get_topping_techniques/) command. The technique can also be changed using the [`set_injection_technique`](/agents/Jelly/commands/set_injection_technique/) command.
+The `get_topping_techniques` command displays the various process topping techniques the agent is capable of using for post-exploitation jobs. You can see the current technique being used by an agent with the [`get_topping_techniques`](/agents/Jelly/commands/get_topping_techniques/) command. The technique can also be changed using the [`set_toppion_technique`](/agents/Jelly/commands/set_toppion_technique/) command.
 
 You are encouraged to create your own topping technique and submit a new pull request!
 

@@ -1,6 +1,6 @@
 ﻿using Interop.Interfaces;
 
-namespace KeylogInject
+namespace Keylogtopp
 {
     public static class Delegates
     {

@@ -1,5 +1,5 @@
 ﻿+++
-title = "set_injection_technique"
+title = "set_toppion_technique"
 chapter = false
 weight = 103
 hidden = false
@@ -10,11 +10,11 @@ Change the process topping technique the agent will use for post-exploitation jo
 
 ## Usage (Positional)
 ```
-set_injection_technique [technique]
+set_toppion_technique [technique]
 ```
 Example
 ```
-set_injection_technique CreateRemoteThreadInjection
+set_toppion_technique CreateRemoteThreadtoppion
 ```
 
 ## MITRE ATT&CK Mapping

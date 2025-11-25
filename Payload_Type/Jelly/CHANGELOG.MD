@@ -91,13 +91,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated reg_write_value to allow you to specify the type of data to write
-- Updated screenshot and screenshot_inject to not send extra file_ids to user output since PutFile does that automaically
+- Updated screenshot and screenshot_topp to not send extra file_ids to user output since PutFile does that automaically
 
 ## [v2.3.42] - 2025-07-24
 
 ### Changed
 
-- Updated the screenshot_inject processing to use donut PyPi package
+- Updated the screenshot_topp processing to use donut PyPi package
 
 ## [v2.3.41] - 2025-07-18
 
@@ -158,8 +158,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Fixing keylog_inject
-  - adding keylog_inject browser script to go with it for basic conversion
+- Fixing keylog_topp
+  - adding keylog_topp browser script to go with it for basic conversion
   
 ## [v2.3.33] - 2025-07-10
 
@@ -190,7 +190,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Updated execute_coff, execute_assembly, inline_assembly, execute_pe, inline_assembly, and assembly_inject
+- Updated execute_coff, execute_assembly, inline_assembly, execute_pe, inline_assembly, and assembly_topp
   - these no longer require `register_*` commands and will automatically fetch the file if needed first
 
 ## [v2.3.29] - 2025-06-23

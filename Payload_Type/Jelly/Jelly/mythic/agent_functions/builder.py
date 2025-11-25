@@ -224,14 +224,14 @@ NOTE: v2.3.2+ has a different bof loader than 2.3.1 and are incompatible since t
                 resp.status = BuildStatus.Success
                 targetExeAsmPath = "/srv/ExecuteAssembly.exe"
                 targetPowerPickPath = "/srv/PowerShellHost.exe"
-                targetScreenshotInjectPath = "/srv/ScreenshotInject.exe"
-                targetKeylogInjectPath = "/srv/KeylogInject.exe"
+                targetScreenshottoppPath = "/srv/Screenshottopp.exe"
+                targetKeylogtoppPath = "/srv/Keylogtopp.exe"
                 targetExecutePEPath = "/srv/ExecutePE.exe"
                 targetInteropPath = "/srv/Interop.dll"
                 shutil.move(f"{agent_build_path.name}/{buildPath}/ExecuteAssembly.exe", targetExeAsmPath)
                 shutil.move(f"{agent_build_path.name}/{buildPath}/PowerShellHost.exe", targetPowerPickPath)
-                shutil.move(f"{agent_build_path.name}/{buildPath}/ScreenshotInject.exe", targetScreenshotInjectPath)
-                shutil.move(f"{agent_build_path.name}/{buildPath}/KeylogInject.exe", targetKeylogInjectPath)
+                shutil.move(f"{agent_build_path.name}/{buildPath}/Screenshottopp.exe", targetScreenshottoppPath)
+                shutil.move(f"{agent_build_path.name}/{buildPath}/Keylogtopp.exe", targetKeylogtoppPath)
                 shutil.move(f"{agent_build_path.name}/{buildPath}/ExecutePE.exe", targetExecutePEPath)
                 shutil.move(f"{agent_build_path.name}/{buildPath}/Interop.dll", targetInteropPath)
                 if self.get_parameter('output_type') == "Source":

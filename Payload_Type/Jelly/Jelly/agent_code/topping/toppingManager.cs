@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace topping
 {
-    public class toppingManager : IInjectionManager
+    public class toppingManager : ItoppionManager
     {
         private IAgent _agent;
         private Type _currentTechnique = typeof(Techniques.CreateRemoteThread.CreateRemoteThread);

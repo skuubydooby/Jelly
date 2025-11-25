@@ -1,10 +1,10 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define SET_INJECTION_TECHNIQUE
+#define SET_toppION_TECHNIQUE
 #endif
 
-#if SET_INJECTION_TECHNIQUE
+#if SET_toppION_TECHNIQUE
 
 using Interop.Classes;
 using Interop.Interfaces;
@@ -12,9 +12,9 @@ using Interop.Structs.MythicStructs;
 
 namespace Tasks
 {
-    public class set_injection_technique : Tasking
+    public class set_toppion_technique : Tasking
     {
-        public set_injection_technique(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
+        public set_toppion_technique(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
         {
         }
 
@@ -22,7 +22,7 @@ namespace Tasks
         public override void Start()
         {
             MythicTaskResponse resp;
-            if (_agent.GetInjectionManager().SetTechnique(_data.Parameters))
+            if (_agent.GettoppionManager().SetTechnique(_data.Parameters))
             {
                 resp = CreateTaskResponse($"Set topping technique to {_data.Parameters}", true);
             }

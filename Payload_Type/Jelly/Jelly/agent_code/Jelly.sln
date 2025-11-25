@@ -32,9 +32,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptedFileStore", "Encry
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerShellHost", "PowerShellHost\PowerShellHost.csproj", "{1D897A8A-1394-4561-B31C-D8312462500C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScreenshotInject", "ScreenshotInject\ScreenshotInject.csproj", "{E05B7224-D965-422C-9B12-E6DEE1BFAC64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Screenshottopp", "Screenshottopp\Screenshottopp.csproj", "{E05B7224-D965-422C-9B12-E6DEE1BFAC64}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeylogInject", "KeylogInject\KeylogInject.csproj", "{6EACC51E-1E46-4C6F-9516-B71F09AD00D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keylogtopp", "Keylogtopp\Keylogtopp.csproj", "{6EACC51E-1E46-4C6F-9516-B71F09AD00D1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExecutePE", "ExecutePE\ExecutePE.csproj", "{44D50BF5-4C12-4328-B983-0045C157D932}"
 EndProject

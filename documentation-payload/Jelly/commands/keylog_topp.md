@@ -18,7 +18,7 @@ The target process's ID to topp the keylogging stub.
 
 ## Usage
 ```
-keylog_inject -PID [pid]
+keylog_topp -PID [pid]
 ```
 Example
 ```

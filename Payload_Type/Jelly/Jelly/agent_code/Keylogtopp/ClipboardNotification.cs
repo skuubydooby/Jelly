@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
-using static KeylogInject.Delegates;
-using static KeylogInject.Native;
+using static Keylogtopp.Delegates;
+using static Keylogtopp.Native;
 
-namespace KeylogInject
+namespace Keylogtopp
 {
     public sealed class ClipboardNotification : Form
     {

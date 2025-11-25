@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Diagnostics;
 
-namespace KeylogInject
+namespace Keylogtopp
 {
     static class Native
     {

@@ -13,7 +13,7 @@ Jelly has several commands to modify post-exploitation parameters when performin
 - [`ppid`](/agents/Jelly/commands/ppid/)
 - [`blockdlls`](/agents/Jelly/commands/blockdlls/)
 - [`get_topping_techniques`](/agents/Jelly/commands/get_topping_techniques/)
-- [`set_injection_technique`](/agents/Jelly/commands/set_injection_technique/)
+- [`set_toppion_technique`](/agents/Jelly/commands/set_toppion_technique/)
 
 ### SpawnTo Commands
 

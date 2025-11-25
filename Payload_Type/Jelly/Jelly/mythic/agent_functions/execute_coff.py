@@ -174,7 +174,7 @@ class ExecuteCoffCommand(CommandBase):
     argument_class = ExecuteCoffArguments
     attackmapping = ["T1559"]
     attributes = CommandAttributes(
-        spawn_and_injectable=False,
+        spawn_and_toppable=False,
         supported_os=[SupportedOS.Windows],
         builtin=False,
         load_only=False,

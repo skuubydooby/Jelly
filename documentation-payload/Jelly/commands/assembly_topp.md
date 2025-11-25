@@ -1,5 +1,5 @@
 ﻿+++
-title = "assembly_inject"
+title = "assembly_topp"
 chapter = false
 weight = 103
 hidden = false
@@ -15,7 +15,7 @@ topp the .NET assembly loader into a remote process and execute an assembly regi
 
 ### Arguments (Positional or Popup)
 
-![args](../images/assembly_inject.png)
+![args](../images/assembly_topp.png)
 
 #### Arguments
 Any arguments to be executed with the assembly.
@@ -28,12 +28,12 @@ Process ID to topp into.
 
 ## Usage
 ```
-assembly_inject -PID 7344 -Assembly Seatbelt.exe -Arguments DotNet
+assembly_topp -PID 7344 -Assembly Seatbelt.exe -Arguments DotNet
 ```
 
 Example
 
-![ex](../images/assembly_inject_resp.png)
+![ex](../images/assembly_topp_resp.png)
 
 ## MITRE ATT&CK Mapping
 

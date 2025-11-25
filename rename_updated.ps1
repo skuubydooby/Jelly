@@ -1,4 +1,4 @@
-﻿# Usage: .\rename.ps1 -OldName "topping" -NewName "Example" [-ProjectPath "."] [-DryRun]
+﻿# Usage: .\rename.ps1 -OldName "toppion" -NewName "Example" [-ProjectPath "."] [-DryRun]
 
 param(
     [Parameter(Mandatory=$true)]
@@ -35,7 +35,7 @@ $ProjectPath = Resolve-Path $ProjectPath
 
 # Step 1: Update content in ALL text-based files
 Write-Host "Step 1: Updating file contents recursively..." -ForegroundColor Cyan
-$textExtensions = @("*.cs", "*.csproj", "*.sln", "*.json", "*.xml", "*.config", "*.txt", "*.props", "*.targets", "*.resx", "*.xaml", "*.py", "*.yml", "*.yaml", "*.sh", "*.md", "*.dockerfile", "*.bat", "*.ps1", "*.js")
+$textExtensions = @("*.cs", "*.csproj", "*.sln", "*.json", "*.xml", "*.config", "*.txt", "*.props", "*.targets", "*.resx", "*.xaml", "*.py", "*.yml", "*.yaml", "*.sh", "*.md", "*.dockerfile", "*.bat", "*.ps1")
 $allFiles = @()
 
 foreach ($ext in $textExtensions) {
@@ -72,41 +72,12 @@ foreach ($file in $allFiles) {
         $matches = ([regex]::Matches($content, [regex]::Escape($OldName), [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)).Count
 
         if ($matches -gt 0) {
-            # Replace exact case matches (namespace, class names, etc.)
-            $content = $content -creplace "\b$OldName\b", $NewName
+            # Escape the old name for regex
+            $escapedOld = [regex]::Escape($OldName)
             
-            # Replace PascalCase variations (e.g., toppingManager -> ExampleManager)
-            $content = $content -creplace "\b$OldName([A-Z][a-zA-Z0-9]*)", "$NewName`$1"
-            
-            # Replace camelCase variations (e.g., toppingManager -> exampleManager)
-            $content = $content -creplace "\b$oldNameLower([A-Z][a-zA-Z0-9]*)", "$newNameLower`$1"
-            
-            # Replace in namespaces
-            $content = $content -replace "namespace\s+$OldName\b", "namespace $NewName"
-            $content = $content -replace "namespace\s+([a-zA-Z0-9_.]+\.)$OldName\b", "namespace `$1$NewName"
-            
-            # Replace using statements
-            $content = $content -replace "using\s+$OldName\b", "using $NewName"
-            $content = $content -replace "using\s+([a-zA-Z0-9_.]+\.)$OldName\b", "using `$1$NewName"
-            
-            # Replace in paths (Windows and Unix style)
-            $content = $content -replace "\\$OldName\\", "\$NewName\"
-            $content = $content -replace "/$OldName/", "/$NewName/"
-            $content = $content -replace "\\$OldName\b", "\$NewName"
-            $content = $content -replace "/$OldName\b", "/$NewName"
-            
-            # Replace project references
-            $content = $content -replace """$OldName""", """$NewName"""
-            $content = $content -replace "'$OldName'", "'$NewName'"
-            $content = $content -replace """$OldName\.csproj""", """$NewName.csproj"""
-            
-            # Replace assembly and namespace names in XML
-            $content = $content -replace "<AssemblyName>$OldName</AssemblyName>", "<AssemblyName>$NewName</AssemblyName>"
-            $content = $content -replace "<RootNamespace>$OldName</RootNamespace>", "<RootNamespace>$NewName</RootNamespace>"
-            $content = $content -replace "<ProjectReference Include="".*\\$OldName\\$OldName\.csproj""", "<ProjectReference Include=""..\$NewName\$NewName.csproj"""
-            
-            # Replace with dot notation (e.g., topping.Techniques)
-            $content = $content -creplace "\b$OldName\.", "$NewName."
+            # Replace ALL occurrences using case-insensitive replacement
+            # This will catch: topp, topp, Screenshottopp, Keylogtopp, etc.
+            $content = $content -ireplace $escapedOld, $NewName
             
             if ($content -ne $originalContent) {
                 if (-not $DryRun) {
@@ -127,11 +98,11 @@ foreach ($file in $allFiles) {
 Write-Host ""
 Write-Host "Step 2: Renaming files with '$OldName' in filename..." -ForegroundColor Cyan
 $filesToRename = Get-ChildItem -Path $ProjectPath -Recurse -File -ErrorAction SilentlyContinue | 
-    Where-Object { $_.Name -match [regex]::Escape($OldName) } |
+    Where-Object { $_.Name -match ("(?i)" + [regex]::Escape($OldName)) } |
     Sort-Object { $_.FullName.Length } -Descending
 
 foreach ($file in $filesToRename) {
-    $newFileName = $file.Name -replace [regex]::Escape($OldName), $NewName
+    $newFileName = $file.Name -ireplace [regex]::Escape($OldName), $NewName
     $newFilePath = Join-Path $file.Directory.FullName $newFileName
 
     if ($DryRun) {
@@ -156,11 +127,11 @@ foreach ($file in $filesToRename) {
 Write-Host ""
 Write-Host "Step 3: Renaming folders with '$OldName' in name..." -ForegroundColor Cyan
 $foldersToRename = Get-ChildItem -Path $ProjectPath -Recurse -Directory -ErrorAction SilentlyContinue | 
-    Where-Object { $_.Name -match [regex]::Escape($OldName) } | 
+    Where-Object { $_.Name -match ("(?i)" + [regex]::Escape($OldName)) } | 
     Sort-Object { $_.FullName.Length } -Descending
 
 foreach ($folder in $foldersToRename) {
-    $newFolderName = $folder.Name -replace [regex]::Escape($OldName), $NewName
+    $newFolderName = $folder.Name -ireplace [regex]::Escape($OldName), $NewName
     $newFolderPath = Join-Path $folder.Parent.FullName $newFolderName
 
     if ($DryRun) {

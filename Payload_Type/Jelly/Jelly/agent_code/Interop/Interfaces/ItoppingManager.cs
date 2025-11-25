@@ -3,7 +3,7 @@ using System;
 
 namespace Interop.Interfaces
 {
-    public interface IInjectionManager
+    public interface ItoppionManager
     {
         string[] GetTechniques();
         bool SetTechnique(string technique);

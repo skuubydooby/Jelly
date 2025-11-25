@@ -517,7 +517,7 @@ namespace Process
             }
             try
             {
-                var technique = _agent.GetInjectionManager().CreateInstance(code, (int)PID);
+                var technique = _agent.GettoppionManager().CreateInstance(code, (int)PID);
                 bRet = technique.topp(arguments);
             }
             catch (Exception ex)

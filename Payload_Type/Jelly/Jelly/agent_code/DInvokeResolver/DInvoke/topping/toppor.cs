@@ -6,7 +6,7 @@ namespace DInvokeResolver.DInvoke.topping
     /// Provides static functions for performing topping using a combination of Allocation and Execution components.
     /// </summary>
     /// <author>The Wover (@TheRealWover)</author>
-    public static class Injector
+    public static class toppor
     {
         /// <summary>
         /// topp a payload into a target process using a specified allocation and execution technique.

@@ -17,7 +17,7 @@ if platform.system() == 'Windows':
 else:
     POWERSHELL_HOST_PATH="/srv/PowerShellHost.exe"
 
-class PsInjectArguments(TaskArguments):
+class PstoppArguments(TaskArguments):
 
     def __init__(self, command_line, **kwargs):
         super().__init__(command_line, **kwargs)
@@ -42,25 +42,25 @@ class PsInjectArguments(TaskArguments):
         else:
             parts = self.command_line.strip().split(" ", maxsplit=1)
             if len(parts) != 2:
-                raise Exception("Invalid command line arguments passed.\n\tUsage: {}".format(PsInjectCommand.help_cmd))
+                raise Exception("Invalid command line arguments passed.\n\tUsage: {}".format(PstoppCommand.help_cmd))
             try:
                 int(parts[0])
             except:
-                raise Exception(f"Invalid PID passed to psinject: {parts[0]}")
+                raise Exception(f"Invalid PID passed to pstopp: {parts[0]}")
             self.add_arg("pid", int(parts[0]), ParameterType.Number)
             self.add_arg("powershell_params", parts[1])
         self.add_arg("pipe_name", str(uuid4()))
         pass
 
 
-class PsInjectCommand(CommandBase):
-    cmd = "psinject"
+class PstoppCommand(CommandBase):
+    cmd = "pstopp"
     needs_admin = False
-    help_cmd = "psinject [pid] [command]"
+    help_cmd = "pstopp [pid] [command]"
     description = "Executes PowerShell in the process specified by `[pid]`. Note: Currently stdout is not captured of child processes if not explicitly captured into a variable or via inline execution (such as `$(whoami)`)."
     version = 2
     author = "@djhohnstein"
-    argument_class = PsInjectArguments
+    argument_class = PstoppArguments
     attackmapping = ["T1059", "T1055"]
 
     async def build_powershell(self):

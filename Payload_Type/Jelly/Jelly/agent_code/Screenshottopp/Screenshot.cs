@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 
 
-namespace ScreenshotInject
+namespace Screenshottopp
 {
     public static class Screenshot
     {

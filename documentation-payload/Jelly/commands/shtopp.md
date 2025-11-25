@@ -1,5 +1,5 @@
 ﻿+++
-title = "shinject"
+title = "shtopp"
 chapter = false
 weight = 103
 hidden = false
@@ -21,7 +21,7 @@ File containing position independant shellcode.
 
 ## Usage
 ```
-shinject
+shtopp
 ```
 
 ## MITRE ATT&CK Mapping

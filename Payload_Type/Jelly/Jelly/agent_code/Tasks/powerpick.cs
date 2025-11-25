@@ -180,7 +180,7 @@ namespace Tasks
                 _agent.GetTaskManager().AddTaskResponseToQueue(
                     CreateTaskResponse("", false, messages:
                         [
-                            Artifact.ProcessInject((int)proc.PID, _agent.GetInjectionManager().GetCurrentTechnique().Name)
+                            Artifact.Processtopp((int)proc.PID, _agent.GettoppionManager().GetCurrentTechnique().Name)
                         ]
                     )
                 );

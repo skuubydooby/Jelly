@@ -1,4 +1,4 @@
-# from mythic_payloadtype_container.MythicCommandBase import *
+﻿# from mythic_payloadtype_container.MythicCommandBase import *
 # import json
 # from uuid import uuid4
 # from sRDI import ShellcodeRDI
@@ -106,7 +106,7 @@
 #     is_remove_file = False
 #     author = "@elad_shamir"
 #     argument_class = GoldenTicketArguments
-#     browser_script = BrowserScript(script_name="unmanaged_injection", author="@djhohnstein")
+#     browser_script = BrowserScript(script_name="unmanaged_toppion", author="@djhohnstein")
 #     attackmapping = []
 
 #     async def create_tasking(self, task: MythicTask) -> MythicTask:

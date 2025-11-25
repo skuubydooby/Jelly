@@ -15,7 +15,7 @@ using System.IO.Pipes;
 using Interop.Constants;
 using Interop.Classes.Events;
 
-namespace ScreenshotInject
+namespace Screenshottopp
 {
     class Program
     {

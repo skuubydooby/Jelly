@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace KeylogInject
+namespace Keylogtopp
 {
     static class Clipboard
     {

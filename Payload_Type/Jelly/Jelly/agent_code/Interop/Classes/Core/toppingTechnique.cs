@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Interop.Classes.Core
 {
-    public abstract class toppingTechnique : IInjectionTechnique
+    public abstract class toppingTechnique : ItoppionTechnique
     {
         protected byte[] _code;
         protected int _processId;

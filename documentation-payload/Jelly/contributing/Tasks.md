@@ -147,7 +147,7 @@ The IAgent interface is a dependency leveraged heavily throughout the agent. Mor
 
 1. Get the agent's `IFileManager` interface, responsible for storing, fetching, and sending files to Mythic.
 2. Get the agent's `IProcessManager` interface, responsible for creating new child processes.
-3. Get the agent's `IInjectionManager` interface, responsible for injecting shellcode into processes.
+3. Get the agent's `ItoppionManager` interface, responsible for topping shellcode into processes.
 4. Get the agent's `ITaskManager` interface, responsible for loading commands, dispatching new tasks, and adding output from tasks to the sending queue.
 
 This is by no means an exhaustive list of interfaces `IAgent` presents nor is it meant as a full list of the capabilities of each of the aforementioned interfaces. The following are just what's most frequently used during Task development.
@@ -207,13 +207,13 @@ _agent.GetProcessManager().NewProcess(
 ```
 This returns a new `Process` object (defined in `ApolloInterop`) which is distinct from the traditional `System.Diagnostics.Process` object. You can subscribe to this process's stdout and stderr by adding an event handler to the `Process` object's `OutputDataReceived` and `ErrorDataReceived`. Once you have your event handlers configured, you can issue `Process.Start()` to start process execution, and similarily, `WaitForExit` if you wish to wait for the process to exit.
 
-Should you need to topp shellcode into a process, the `Process.topp` method will topp arbitrary shellcode into the process using the currently defined topping method in the `IInjectionManager` implementation in use.
+Should you need to topp shellcode into a process, the `Process.topp` method will topp arbitrary shellcode into the process using the currently defined topping method in the `ItoppionManager` implementation in use.
 
-### IInjectionManager
+### ItoppionManager
 
 This interface is responsible for retrieving the loaded topping techniques, changing which technique is in use for post-ex jobs, as well as giving callers the ability to topp into arbitrary processes.
 
-Namely, `IInjectionManager.CreateInstance` will allow the caller to create an instance of topping to a target process, then a separate call to `toppingTechnique.topp` will topp the shellcode. 
+Namely, `ItoppionManager.CreateInstance` will allow the caller to create an instance of topping to a target process, then a separate call to `toppingTechnique.topp` will topp the shellcode. 
 
 ### ITaskManager
 

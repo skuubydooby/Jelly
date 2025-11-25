@@ -1,6 +1,6 @@
 ﻿namespace Interop.Interfaces
 {
-    public interface IInjectionTechnique
+    public interface ItoppionTechnique
     {
         bool topp(string arguments = "");
     }

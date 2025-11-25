@@ -28,7 +28,7 @@ Amount of time (in seconds) to wait between screenshots being taken. Default: 0
 
 ## Usage
 ```
-screenshot_inject -PID [pid] -Count [count] -Interval [interval]
+screenshot_topp -PID [pid] -Count [count] -Interval [interval]
 ```
 
 ## MITRE ATT&CK Mapping

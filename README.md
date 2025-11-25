@@ -30,7 +30,7 @@ Once installed, restart Mythic to build a new agent.
 
 Command | Syntax                                                                                                                | Description
 ------- |-----------------------------------------------------------------------------------------------------------------------| -----------
-assembly_inject | `assembly_inject -PID [pid] -Assembly [assembly] -Arguments [args]`                                           | Execute .NET assembly in remote process.
+assembly_topp | `assembly_topp -PID [pid] -Assembly [assembly] -Arguments [args]`                                           | Execute .NET assembly in remote process.
 blockdlls | `blockdlls -EnableBlock [false]`                                                                                    | Block non-Microsoft signed DLLs from loading into post-ex jobs.
 cat | `cat -Path [file]`                                                                                                        | Retrieve the output of a file.
 cd | `cd -Path [dir]`                                                                                                           | Change working directory.
@@ -48,7 +48,7 @@ topp | `topp`                                                                   
 inline_assembly | `inline_assembly -Assembly [Assembly.exe] -Arguments [Additional Args]`                                       | Execute a .NET assembly in the currently executing process that's been registered with `register_file`
 jobkill | `jobkill [jid]`                                                                                                       | Kill a running job in the agent.
 jobs | `jobs`                                                                                                                   | List all running jobs.
-keylog_inject | `keylog_inject -PID [pid]`                                                                                      | topp a keylogger into a remote process.
+keylog_topp | `keylog_topp -PID [pid]`                                                                                      | topp a keylogger into a remote process.
 kill | `kill -PID [pid]`                                                                                                        | Attempt to kill the process specified by `[pid]`.
 link | `link`                                                                                                                   | Link to a P2P agent via SMB or TCP. Modal popup only.
 load | `load command1 command2 ...`                                                                                             | Load new commands into the agent.
@@ -68,7 +68,7 @@ powershell_import | `powershell_import`                                         
 ppid | `ppid -PID [pid_integer]`                                                                                                | Set the PPID of sacrificial jobs to the specified PID.
 printspoofer | `printspoofer -Command [command]`                                                                                | Execute a command in SYSTEM integrity so long as you have SeImpersonate privileges.
 ps | `ps`                                                                                                                       | List process information.
-psinject | `psinject -PID [pid] -Command [command]`                                                                             | Executes PowerShell in the process specified by `[pid]`. Note: Currently stdout is not captured of child processes if not explicitly captured into a variable or via inline execution (such as `$(whoami)`).
+pstopp | `pstopp -PID [pid] -Command [command]`                                                                             | Executes PowerShell in the process specified by `[pid]`. Note: Currently stdout is not captured of child processes if not explicitly captured into a variable or via inline execution (such as `$(whoami)`).
 pth | `pth -Domain [domain] -User [username] -NTLM [ntlm_hash] [-AES128 [aes128_key] -AES256 [aes256_key] -Run [program.exe]]`  | Use `mimikatz`'s pth module to spawn a process with alternate credentials.
 pwd | `pwd`                                                                                                                     | Print working directory.
 reg_query | `reg_query -Hive [HKCU:\\|HKU:\\|HKLM:\\|HKCR:\] [-Key [keyname]]`                                              | Query all subkeys of the specified registry path. Needs to be of the format `HKCU:\`, `HKLM:\`, or `HKCR:\`.
@@ -79,11 +79,11 @@ rev2self | `rev2self`                                                           
 rm | `rm -Path [path] [-Host [hostname] -File [filename]]`                                                                      | Remove a file specified by `[path]`. Alternatively, if `-File` is provided, `-Path` will be used as the directory, and `-File` will be the filename.
 run | `run -Executable [binary.exe] -Arguments [args]`                                                                          | Runs the binary specified by `[binary.exe]` with passed arguments (if any).
 sc | `sc [-Query\|-Start\|-Stop\|-Create\|-Delete] [-Computer [computername] -DisplayName [display_name] -ServiceName [servicename] -BinPath [binpath]]` | .NET implementation of the Service Control Manager.
-screenshot_inject | `screenshot_inject -PID [pid] [-Interval [int] -Count [int]]`                                               | Get a screenshot of the desktop session associated with `PID` every `Interval` seconds for `Count` screenshots.
+screenshot_topp | `screenshot_topp -PID [pid] [-Interval [int] -Count [int]]`                                               | Get a screenshot of the desktop session associated with `PID` every `Interval` seconds for `Count` screenshots.
 screenshot | `screenshot`                                                                                                       | Get a screenshot of the current screen.
-set_injection_technique | `set_injection_technique [technique]`                                                                 | Set the topping technique used in post-ex jobs that require topping.
+set_toppion_technique | `set_toppion_technique [technique]`                                                                 | Set the topping technique used in post-ex jobs that require topping.
 shell | `shell [command]`                                                                                                       | Run a shell command which will translate to a process being spawned with command line: `cmd.exe /S /c [command]`
-shinject | `shinject`                                                                                                           | topp given shellcode into a specified pid. Modal popup only.
+shtopp | `shtopp`                                                                                                           | topp given shellcode into a specified pid. Modal popup only.
 sleep | `sleep [seconds]`                                                                                                       | Set the callback interval of the agent in seconds.
 socks | `socks -Port [port]`                                                                                                    | Standup the socks server to proxy network traffic, routable via Mythic on `[port]`.
 spawn | `spawn`                                                                                                                 | Spawn a new callback in the postex process specified by `spawnto_*`.

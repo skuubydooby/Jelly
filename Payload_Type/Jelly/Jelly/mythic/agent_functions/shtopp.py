@@ -4,7 +4,7 @@ from mythic_container.MythicRPC import *
 import base64
 
 
-class ShInjectArguments(TaskArguments):
+class ShtoppArguments(TaskArguments):
 
     def __init__(self, command_line, **kwargs):
         super().__init__(command_line, **kwargs)
@@ -52,21 +52,21 @@ class ShInjectArguments(TaskArguments):
 
     async def parse_arguments(self):
         if len(self.command_line) == 0:
-            raise Exception("No arguments given.\n\tUsage: {}".format(ShInjectCommand.help_cmd))
+            raise Exception("No arguments given.\n\tUsage: {}".format(ShtoppCommand.help_cmd))
         if self.command_line[0] != "{":
-            raise Exception("Require JSON blob, but got raw command line.\n\tUsage: {}".format(ShInjectCommand.help_cmd))
+            raise Exception("Require JSON blob, but got raw command line.\n\tUsage: {}".format(ShtoppCommand.help_cmd))
         self.load_args_from_json_string(self.command_line)
         pass
 
 
-class ShInjectCommand(CommandBase):
-    cmd = "shinject"
+class ShtoppCommand(CommandBase):
+    cmd = "shtopp"
     needs_admin = False
-    help_cmd = "shinject (modal popup)"
+    help_cmd = "shtopp (modal popup)"
     description = "topp shellcode into a remote process."
     version = 2
     author = "@djhohnstein"
-    argument_class = ShInjectArguments
+    argument_class = ShtoppArguments
     attackmapping = ["T1055"]
 
     async def create_go_tasking(self, taskData: PTTaskMessageAllData) -> PTTaskCreateTaskingMessageResponse:

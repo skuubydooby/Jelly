@@ -651,11 +651,11 @@ namespace Interop.Structs
                 };
             }
 
-            public static Artifact ProcessInject(int pid, string method)
+            public static Artifact Processtopp(int pid, string method)
             {
                 return new Artifact
                 {
-                    BaseArtifact = "ProcessInject",
+                    BaseArtifact = "Processtopp",
                     ArtifactDetails = $"topped into PID {pid} using {method}"
                 };
             }
