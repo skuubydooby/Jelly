@@ -1,4 +1,4 @@
-function(task, responses){
+﻿function(task, responses){
     if(task.status.includes("error")){
         const combined = responses.reduce( (prev, cur) => {
             return prev + cur;
@@ -105,9 +105,9 @@ function(task, responses){
                                 })
                             },
                             {
-                                "name": "Inject Keylogger",
+                                "name": "topp Keylogger",
                                 "type": "task",
-                                "startIcon": "inject",
+                                "startIcon": "topp",
                                 "ui_feature": "keylog_inject",
                                 "parameters": pinfo["process_id"]
                             },

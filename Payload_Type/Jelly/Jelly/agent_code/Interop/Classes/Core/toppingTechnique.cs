@@ -78,6 +78,6 @@ namespace Interop.Classes.Core
             _pCloseHandle = _agent.GetApi().GetLibraryFunction<CloseHandle>(Library.KERNEL32, "CloseHandle");
         }
 
-        public abstract bool Inject(string arguments = "");
+        public abstract bool topp(string arguments = "");
     }
 }

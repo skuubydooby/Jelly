@@ -207,13 +207,13 @@ _agent.GetProcessManager().NewProcess(
 ```
 This returns a new `Process` object (defined in `ApolloInterop`) which is distinct from the traditional `System.Diagnostics.Process` object. You can subscribe to this process's stdout and stderr by adding an event handler to the `Process` object's `OutputDataReceived` and `ErrorDataReceived`. Once you have your event handlers configured, you can issue `Process.Start()` to start process execution, and similarily, `WaitForExit` if you wish to wait for the process to exit.
 
-Should you need to inject shellcode into a process, the `Process.Inject` method will inject arbitrary shellcode into the process using the currently defined topping method in the `IInjectionManager` implementation in use.
+Should you need to topp shellcode into a process, the `Process.topp` method will topp arbitrary shellcode into the process using the currently defined topping method in the `IInjectionManager` implementation in use.
 
 ### IInjectionManager
 
-This interface is responsible for retrieving the loaded topping techniques, changing which technique is in use for post-ex jobs, as well as giving callers the ability to inject into arbitrary processes.
+This interface is responsible for retrieving the loaded topping techniques, changing which technique is in use for post-ex jobs, as well as giving callers the ability to topp into arbitrary processes.
 
-Namely, `IInjectionManager.CreateInstance` will allow the caller to create an instance of topping to a target process, then a separate call to `toppingTechnique.Inject` will inject the shellcode. 
+Namely, `IInjectionManager.CreateInstance` will allow the caller to create an instance of topping to a target process, then a separate call to `toppingTechnique.topp` will topp the shellcode. 
 
 ### ITaskManager
 

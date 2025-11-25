@@ -81,7 +81,7 @@ namespace Interop.Classes.Core
             return unchecked((int)(rtlNtStatusToDosError(ExitCode) | HRESULT_MASK));
         }
 
-        public abstract bool Inject(byte[] code, string arguments = "");
+        public abstract bool topp(byte[] code, string arguments = "");
 
         public abstract bool Start();
 

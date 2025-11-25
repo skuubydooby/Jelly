@@ -107,7 +107,7 @@ class JumpWMIArguments(TaskArguments):
 
     async def parse_arguments(self):
         if self.command_line[0] != "{":
-            raise Exception("Inject requires JSON parameters and not raw command line.")
+            raise Exception("topp requires JSON parameters and not raw command line.")
         self.load_args_from_json_string(self.command_line)
         if self.get_arg("pid") == 0:
             raise Exception("Required non-zero PID")

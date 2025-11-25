@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "execute_assembly"
 chapter = false
 weight = 103
@@ -6,7 +6,7 @@ hidden = false
 +++
 
 {{% notice info %}}
-Artifacts Generated: Process Create, Process Inject, Process Kill
+Artifacts Generated: Process Create, Process topp, Process Kill
 {{% /notice %}}
 
 ## Summary
@@ -40,7 +40,7 @@ execute_assembly SeatBelt.exe --groups=all
 - T1547
 
 ## Detailed Summary
-The `execute_assembly` command uses a .NET Common Language Runtime loader to execute assemblies within a sacrificial process and return output over a named pipe back to the agent. This loader is injected into a sacrificial process (specified by the `spawnto_*` commands) and passes the assembly's bytes over a named pipe, which is then loaded reflectively using `System.Reflection.Assembly.Load`. This assembly is then invoked and passed any passed arguments while streaming data over the named pipe.
+The `execute_assembly` command uses a .NET Common Language Runtime loader to execute assemblies within a sacrificial process and return output over a named pipe back to the agent. This loader is topped into a sacrificial process (specified by the `spawnto_*` commands) and passes the assembly's bytes over a named pipe, which is then loaded reflectively using `System.Reflection.Assembly.Load`. This assembly is then invoked and passed any passed arguments while streaming data over the named pipe.
 
 This creates a new artifact relating to the sacrificial process spawned, which can be viewed in the artifacts page.
 

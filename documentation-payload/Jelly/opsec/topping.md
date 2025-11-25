@@ -15,10 +15,10 @@ As an operator, sometimes one topping technique is more desirable than another. 
 
 ## Commands Leveraging topping
 
-All of Jelly's [fork and run commands](/agents/Jelly/opsec/forkandrun/) use topping to inject into a sacrificial process; however, there are additional commands that inject into other processes. Those commands are:
+All of Jelly's [fork and run commands](/agents/Jelly/opsec/forkandrun/) use topping to topp into a sacrificial process; however, there are additional commands that topp into other processes. Those commands are:
 
 - [`assembly_inject`](/agents/Jelly/commands/assembly_inject/)
-- [`inject`](/agents/Jelly/commands/inject/)
+- [`topp`](/agents/Jelly/commands/topp/)
 - [`keylog_inject`](/agents/Jelly/commands/keylog/)
 - [`psinject`](/agents/Jelly/commands/psinject/)
 - [`shinject`](/agents/Jelly/commands/shinject/)

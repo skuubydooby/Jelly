@@ -1,4 +1,4 @@
-from mythic_container.MythicCommandBase import *
+﻿from mythic_container.MythicCommandBase import *
 import json
 from mythic_container.MythicRPC import *
 import base64
@@ -14,7 +14,7 @@ class ShInjectArguments(TaskArguments):
                 cli_name="PID",
                 display_name="PID",
                 type=ParameterType.Number,
-                description="Process ID to inject into.",
+                description="Process ID to topp into.",
                 parameter_group_info=[
                     ParameterGroupInfo(
                         required=True,
@@ -63,7 +63,7 @@ class ShInjectCommand(CommandBase):
     cmd = "shinject"
     needs_admin = False
     help_cmd = "shinject (modal popup)"
-    description = "Inject shellcode into a remote process."
+    description = "topp shellcode into a remote process."
     version = 2
     author = "@djhohnstein"
     argument_class = ShInjectArguments

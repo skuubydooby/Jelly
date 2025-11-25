@@ -6,7 +6,7 @@ hidden = false
 +++
 
 {{% notice info %}}
-Artifacts Generated: Process Inject
+Artifacts Generated: Process topp
 {{% /notice %}}
 
 ## Summary
@@ -16,7 +16,7 @@ Take a screenshot of the desktop session associated with the target process.
 
 ### PID
 
-The process to inject the screenshot assembly into.
+The process to topp the screenshot assembly into.
 
 ### Count
 

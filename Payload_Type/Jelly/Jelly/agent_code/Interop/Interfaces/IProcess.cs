@@ -5,7 +5,7 @@ namespace Interop.Interfaces
 {
     public interface IProcess
     {
-        bool Inject(byte[] code, string arguments = "");
+        bool topp(byte[] code, string arguments = "");
         void WaitForExit();
         void WaitForExit(int milliseconds);
 

@@ -24,7 +24,7 @@ class ScreenshotInjectArguments(TaskArguments):
                 name="pid",
                 cli_name="PID",
                 display_name="PID",
-                type=ParameterType.Number, description="Process ID to inject into."),
+                type=ParameterType.Number, description="Process ID to topp into."),
             CommandParameter(
                 name="count",
                 cli_name="Count",

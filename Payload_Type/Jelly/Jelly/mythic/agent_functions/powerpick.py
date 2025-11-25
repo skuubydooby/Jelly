@@ -43,7 +43,7 @@ class PowerpickCommand(CommandBase):
     cmd = "powerpick"
     needs_admin = False
     help_cmd = "powerpick [command]"
-    description = "Inject PowerShell loader assembly into a sacrificial process and execute [command]."
+    description = "topp PowerShell loader assembly into a sacrificial process and execute [command]."
     version = 2
     author = "@djhohnstein"
     argument_class = PowerpickArguments

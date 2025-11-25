@@ -24,7 +24,7 @@ class KeylogInjectArguments(TaskArguments):
                 cli_name="PID",
                 display_name="PID",
                 type=ParameterType.Number,
-                description="Process ID to inject keylogger into."),
+                description="Process ID to topp keylogger into."),
         ]
 
     async def parse_arguments(self):

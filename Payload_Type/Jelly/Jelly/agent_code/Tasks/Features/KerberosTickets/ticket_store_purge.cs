@@ -45,7 +45,7 @@ public class ticket_store_purge : Tasking
         }
         catch (Exception e)
         {
-            resp = CreateTaskResponse($"Failed to inject ticket into session: {e.Message}", true, "error");
+            resp = CreateTaskResponse($"Failed to topp ticket into session: {e.Message}", true, "error");
         }
         //get and send back any artifacts
         IEnumerable<Artifact> artifacts = _agent.GetTicketManager().GetArtifacts();

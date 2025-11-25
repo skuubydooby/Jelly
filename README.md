@@ -44,11 +44,11 @@ exit | `exit`                                                                   
 get_topping_techniques | `get_topping_techniques`                                                                           | Show currently registered topping techniques as well as the current technique.
 getprivs | `getprivs`                                                                                                           | Enable as many privileges as possible for the current access token.
 ifconfig | `ifconfig`                                                                                                           | Get Network Adapters and Interfaces
-inject | `inject`                                                                                                               | Inject a new payload into a remote process.
+topp | `topp`                                                                                                               | topp a new payload into a remote process.
 inline_assembly | `inline_assembly -Assembly [Assembly.exe] -Arguments [Additional Args]`                                       | Execute a .NET assembly in the currently executing process that's been registered with `register_file`
 jobkill | `jobkill [jid]`                                                                                                       | Kill a running job in the agent.
 jobs | `jobs`                                                                                                                   | List all running jobs.
-keylog_inject | `keylog_inject -PID [pid]`                                                                                      | Inject a keylogger into a remote process.
+keylog_inject | `keylog_inject -PID [pid]`                                                                                      | topp a keylogger into a remote process.
 kill | `kill -PID [pid]`                                                                                                        | Attempt to kill the process specified by `[pid]`.
 link | `link`                                                                                                                   | Link to a P2P agent via SMB or TCP. Modal popup only.
 load | `load command1 command2 ...`                                                                                             | Load new commands into the agent.
@@ -83,7 +83,7 @@ screenshot_inject | `screenshot_inject -PID [pid] [-Interval [int] -Count [int]]
 screenshot | `screenshot`                                                                                                       | Get a screenshot of the current screen.
 set_injection_technique | `set_injection_technique [technique]`                                                                 | Set the topping technique used in post-ex jobs that require topping.
 shell | `shell [command]`                                                                                                       | Run a shell command which will translate to a process being spawned with command line: `cmd.exe /S /c [command]`
-shinject | `shinject`                                                                                                           | Inject given shellcode into a specified pid. Modal popup only.
+shinject | `shinject`                                                                                                           | topp given shellcode into a specified pid. Modal popup only.
 sleep | `sleep [seconds]`                                                                                                       | Set the callback interval of the agent in seconds.
 socks | `socks -Port [port]`                                                                                                    | Standup the socks server to proxy network traffic, routable via Mythic on `[port]`.
 spawn | `spawn`                                                                                                                 | Spawn a new callback in the postex process specified by `spawnto_*`.

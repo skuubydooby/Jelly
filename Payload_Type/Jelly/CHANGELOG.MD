@@ -304,7 +304,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Fixed an issue with the inject command trying to auto-issue a follow-on link for p2p-based shellcode
+- Fixed an issue with the topp command trying to auto-issue a follow-on link for p2p-based shellcode
 
 ## [v2.3.12] - 2025-03-16
 
@@ -460,7 +460,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- updated execute_assembly injected stub to hopefully capture more output successfully
+- updated execute_assembly topped stub to hopefully capture more output successfully
 
 ## [v2.2.16] - 2024-10-03
 

@@ -6,12 +6,12 @@ hidden = false
 +++
 
 {{% notice info %}}
-Artifacts Generated: Process Inject
+Artifacts Generated: Process topp
 {{% /notice %}}
 
 ## Summary
 
-Inject the .NET assembly loader into a remote process and execute an assembly registered with `register_file`. This assembly is injected into the remote process using the topping technique currently specified by `get_topping_techniques`.
+topp the .NET assembly loader into a remote process and execute an assembly registered with `register_file`. This assembly is topped into the remote process using the topping technique currently specified by `get_topping_techniques`.
 
 ### Arguments (Positional or Popup)
 
@@ -24,7 +24,7 @@ Any arguments to be executed with the assembly.
 Name used when registering assembly with the `register_file` command (e.g., `Seatbelt.exe`)
 
 #### PID
-Process ID to inject into.
+Process ID to topp into.
 
 ## Usage
 ```

@@ -6,7 +6,7 @@ hidden = false
 +++
 
 {{% notice info %}}
-Artifacts Generated: Process Create, Process Inject, Process Kill
+Artifacts Generated: Process Create, Process topp, Process Kill
 {{% /notice %}}
 
 ## Summary

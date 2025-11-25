@@ -58,7 +58,7 @@ namespace topping.Techniques.CreateRemoteThread
             _pVirtualProtectEx = _agent.GetApi().GetLibraryFunction<VirtualProtectEx>(Library.KERNEL32, "VirtualProtectEx");
         }
 
-        public override bool Inject(string arguments = "")
+        public override bool topp(string arguments = "")
         {
             bool bRet = true;
             IntPtr remoteThread = IntPtr.Zero;

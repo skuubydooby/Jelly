@@ -22,7 +22,7 @@ class AssemblyInjectArguments(TaskArguments):
                 cli_name = "PID",
                 display_name = "Process ID",
                 type=ParameterType.Number,
-                description="Process ID to inject into.",
+                description="Process ID to topp into.",
                 parameter_group_info = [
                     ParameterGroupInfo(
                         required=True,
@@ -104,7 +104,7 @@ class AssemblyInjectCommand(CommandBase):
     cmd = "assembly_inject"
     needs_admin = False
     help_cmd = "assembly_inject [pid] [assembly] [args]"
-    description = "Inject the unmanaged assembly loader into a remote process. The loader will then execute the .NET binary in the context of the injected process."
+    description = "topp the unmanaged assembly loader into a remote process. The loader will then execute the .NET binary in the context of the topped process."
     version = 3
     author = "@djhohnstein"
     argument_class = AssemblyInjectArguments

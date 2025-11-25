@@ -173,9 +173,9 @@ namespace Tasks
                         ]
                     )
                 );
-                if (!proc.Inject(psPic))
+                if (!proc.topp(psPic))
                 {
-                    throw new ExecuteAssemblyException($"Failed to inject powerpick loader into sacrificial process {info.Application}.");
+                    throw new ExecuteAssemblyException($"Failed to topp powerpick loader into sacrificial process {info.Application}.");
                 }
                 _agent.GetTaskManager().AddTaskResponseToQueue(
                     CreateTaskResponse("", false, messages:

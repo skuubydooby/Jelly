@@ -71,7 +71,7 @@ pre = "<b>2. </b>"
     * [set_injection_technique](/agents/Jelly/commands/set_injection_technique/)
 - Session Management
     * [spawn](/agents/Jelly/commands/spawn/)
-    * [inject](/agents/Jelly/commands/inject/)
+    * [topp](/agents/Jelly/commands/topp/)
     * [exit](/agents/Jelly/commands/exit/)
     * [sleep](/agents/Jelly/commands/sleep/)
 - Host Enumeration

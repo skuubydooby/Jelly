@@ -27,7 +27,7 @@ class PsInjectArguments(TaskArguments):
                 cli_name="PID",
                 display_name="PID",
                 type=ParameterType.Number,
-                description="Process ID to inject into."),
+                description="Process ID to topp into."),
             CommandParameter(
                 name="powershell_params",
                 cli_name="Command",

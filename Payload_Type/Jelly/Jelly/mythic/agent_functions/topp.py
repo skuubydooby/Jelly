@@ -6,7 +6,7 @@ import sys
 import asyncio
 
 
-class InjectArguments(TaskArguments):
+class toppArguments(TaskArguments):
 
     def __init__(self, command_line, **kwargs):
         super().__init__(command_line, **kwargs)
@@ -66,7 +66,7 @@ class InjectArguments(TaskArguments):
 
     async def parse_arguments(self):
         if self.command_line[0] != "{":
-            raise Exception("Inject requires JSON parameters and not raw command line.")
+            raise Exception("topp requires JSON parameters and not raw command line.")
         self.load_args_from_json_string(self.command_line)
         supplied_dict = json.loads(self.command_line)
         if "process_id" in supplied_dict:
@@ -116,21 +116,21 @@ async def inject_callback(task: PTTaskCompletionFunctionMessage) -> PTTaskComple
     return response
 
 
-class InjectCommand(CommandBase):
-    cmd = "inject"
+class toppCommand(CommandBase):
+    cmd = "topp"
     attributes=CommandAttributes(
         dependencies=["shinject"]
     )
     needs_admin = False
-    help_cmd = "inject (modal popup)"
-    description = "Inject agent shellcode into a remote process."
+    help_cmd = "topp (modal popup)"
+    description = "topp agent shellcode into a remote process."
     version = 2
     script_only = True
     author = "@djhohnstein"
-    argument_class = InjectArguments
+    argument_class = toppArguments
     attackmapping = ["T1055"]
     completion_functions = {"inject_callback": inject_callback, "link_callback": link_callback}
-    supported_ui_features = ["process_browser:inject"]
+    supported_ui_features = ["process_browser:topp"]
 
     async def create_go_tasking(self, taskData: PTTaskMessageAllData) -> PTTaskCreateTaskingMessageResponse:
         response = PTTaskCreateTaskingMessageResponse(

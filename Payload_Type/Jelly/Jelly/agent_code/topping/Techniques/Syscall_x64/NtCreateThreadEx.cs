@@ -185,7 +185,7 @@ namespace topping.Techniques.Syscall_x64
             }
         }
 
-        public override bool Inject(string arguments = "")
+        public override bool topp(string arguments = "")
         {
             IntPtr pMemoryAllocation = new IntPtr();
             UIntPtr pAllocationSize = new UIntPtr(Convert.ToUInt64(_code.Length));
