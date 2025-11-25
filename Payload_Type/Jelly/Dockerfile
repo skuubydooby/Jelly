@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0
+﻿FROM mcr.microsoft.com/dotnet/sdk:8.0
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -40,8 +40,8 @@ RUN cd Jelly/agent_code && \
     rm -f donut && \
     cp /donut donut
 
-# Copy COFFLoader.dll to root
-RUN cd Jelly/agent_code && cp COFFLoader.dll /COFFLoader.dll
+# Copy coffee.dll to root
+RUN cd Jelly/agent_code && cp coffee.dll /coffee.dll
 
 # Runtime command
 CMD ["bash", "-c", "cp /donut Jelly/agent_code/donut && /venv/bin/python main.py"]

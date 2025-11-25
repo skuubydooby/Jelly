@@ -39,7 +39,7 @@ namespace Tasks
             [DataMember(Name = "bof_id")]
             public string BofId;
             [DataMember(Name = "coff_id")]
-            public string CoffLoaderId;
+            public string coffeeId;
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -1152,12 +1152,12 @@ namespace Tasks
                     _agent.GetTaskManager().AddTaskResponseToQueue(resp);
                     return;
                 }
-                _agent.GetFileManager().GetFileFromStore(parameters.CoffLoaderId, out byte[] coffLoaderDllBytes);
-                if (coffLoaderDllBytes is null || coffLoaderDllBytes.Length == 0)
+                _agent.GetFileManager().GetFileFromStore(parameters.coffeeId, out byte[] coffeeDllBytes);
+                if (coffeeDllBytes is null || coffeeDllBytes.Length == 0)
                 {
-                    if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.CoffLoaderId, out coffLoaderDllBytes))
+                    if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.coffeeId, out coffeeDllBytes))
                     {
-                        _agent.GetFileManager().AddFileToStore(parameters.CoffLoaderId, coffLoaderDllBytes);
+                        _agent.GetFileManager().AddFileToStore(parameters.coffeeId, coffeeDllBytes);
                     }
                     else
                     {
@@ -1166,10 +1166,10 @@ namespace Tasks
                         return;
                     }
                 }
-                if (!LoadDLL(coffLoaderDllBytes))
+                if (!LoadDLL(coffeeDllBytes))
                 {
                     resp = CreateTaskResponse(
-                       $"Failed to load COFFLoader.dll reflectively.",
+                       $"Failed to load coffee.dll reflectively.",
                        true,
                        "error");
                     _agent.GetTaskManager().AddTaskResponseToQueue(resp);

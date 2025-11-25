@@ -209,14 +209,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Updated the build for COFFLoader.dll
+- Updated the build for coffee.dll
 
 ## [v2.3.26] - 2025-06-17
 
 ### Changed
 
 - Updated Jelly to support new cwd and impersonation_context fields
-- Updated execute_coff to copy COFFLoader.dll instead of move it as needed
+- Updated execute_coff to copy coffee.dll instead of move it as needed
 
 ## [v2.3.25] - 2025-06-05
 
@@ -380,9 +380,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Removed RunOF and replaced it with TrustedSec's COFFLoader project
+- Removed RunOF and replaced it with TrustedSec's coffee project
 - Adjusted the execute_coff command to pack args instead of sending down a typed array
-- Added a reflective loader for the COFFLoader.dll (with Claude)
+- Added a reflective loader for the coffee.dll (with Claude)
 - Updated execute_pe's remote loaded code to hook more exit functions and load files better (with Claude)
 
 ## [v2.3.1] - 2025-02-11

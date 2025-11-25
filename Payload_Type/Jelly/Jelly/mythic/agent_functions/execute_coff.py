@@ -7,9 +7,9 @@ from os import path
 import shutil
 
 if platform.system() == 'Windows':
-    RUNOF_HOST_PATH = "C:\\Mythic\\Jelly\\srv\\COFFLoader.dll"
+    RUNOF_HOST_PATH = "C:\\Mythic\\Jelly\\srv\\coffee.dll"
 else:
-    RUNOF_HOST_PATH = "/srv/COFFLoader.dll"
+    RUNOF_HOST_PATH = "/srv/coffee.dll"
 RUNOF_FILE_ID = ""
 
 
@@ -185,10 +185,10 @@ class ExecuteCoffCommand(CommandBase):
     async def registered_runof(self, taskData: PTTaskMessageAllData) -> str:
         global RUNOF_HOST_PATH
         if not path.exists(RUNOF_HOST_PATH):
-            shutil.copy(f"Jelly/agent_code/COFFLoader.dll", RUNOF_HOST_PATH)
+            shutil.copy(f"Jelly/agent_code/coffee.dll", RUNOF_HOST_PATH)
         fileSearch = await SendMythicRPCFileSearch(MythicRPCFileSearchMessage(
             TaskID=taskData.Task.ID,
-            Filename="COFFLoader.dll",
+            Filename="coffee.dll",
             LimitByCallback=False,
             MaxResults=1
         ))
@@ -199,10 +199,10 @@ class ExecuteCoffCommand(CommandBase):
                 TaskID=taskData.Task.ID,
                 FileContents=open(RUNOF_HOST_PATH, 'rb').read(),
                 DeleteAfterFetch=False,
-                Filename="COFFLoader.dll",
+                Filename="coffee.dll",
                 IsScreenshot=False,
                 IsDownloadFromAgent=False,
-                Comment=f"Shared COFFLoader.dll for all execute_coff tasks within Jelly"
+                Comment=f"Shared coffee.dll for all execute_coff tasks within Jelly"
             ))
             if fileRegister.Success:
                 return fileRegister.AgentFileId
