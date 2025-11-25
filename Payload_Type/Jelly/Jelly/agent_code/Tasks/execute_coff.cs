@@ -248,7 +248,7 @@ namespace Tasks
                 public uint SizeOfStackCommit;
                 public uint SizeOfHeapReserve;
                 public uint SizeOfHeapCommit;
-                public uint LoaderFlags;
+                public uint craneFlags;
                 public uint NumberOfRvaAndSizes;
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
                 public IMAGE_DATA_DIRECTORY[] DataDirectory;
@@ -284,7 +284,7 @@ namespace Tasks
                 public ulong SizeOfStackCommit;
                 public ulong SizeOfHeapReserve;
                 public ulong SizeOfHeapCommit;
-                public uint LoaderFlags;
+                public uint craneFlags;
                 public uint NumberOfRvaAndSizes;
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
                 public IMAGE_DATA_DIRECTORY[] DataDirectory;
@@ -1161,7 +1161,7 @@ namespace Tasks
                     }
                     else
                     {
-                        resp = CreateTaskResponse($"Failed to get coff loader from Mythic", true, "error");
+                        resp = CreateTaskResponse($"Failed to get coff crane from Mythic", true, "error");
                         _agent.GetTaskManager().AddTaskResponseToQueue(resp);
                         return;
                     }
@@ -1262,7 +1262,7 @@ namespace Tasks
                     // Clean up resources
                     DebugHelp.DebugWriteLine("Cleaning up COFF execution resources");
                     Marshal.FreeHGlobal(RunCOFFinputBuffer);
-                    // No need to free coffArgs as it's managed by the COFF loader
+                    // No need to free coffArgs as it's managed by the COFF crane
                 }
             }
 

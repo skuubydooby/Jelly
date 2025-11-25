@@ -37,8 +37,8 @@ namespace Tasks
             public int Count;
             [DataMember(Name = "interval")]
             public int Interval;
-            [DataMember(Name = "loader_stub_id")]
-            public string LoaderStubId;
+            [DataMember(Name = "crane_stub_id")]
+            public string craneStubId;
             [DataMember(Name = "pid")]
             public int PID;
         }
@@ -119,7 +119,7 @@ namespace Tasks
             try
             {
                 ScreenshottoppParameters parameters = _jsonSerializer.Deserialize<ScreenshottoppParameters>(_data.Parameters);
-                if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
+                if (string.IsNullOrEmpty(parameters.craneStubId) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
                     resp = CreateTaskResponse(
@@ -142,7 +142,7 @@ namespace Tasks
 
                     if (pidRunning)
                     {
-                        if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId,
+                        if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.craneStubId,
                                 out byte[] exeAsmPic))
                         {
                             var toppor = _agent.GettoppionManager().CreateInstance(exeAsmPic, parameters.PID);
@@ -218,7 +218,7 @@ namespace Tasks
                         else
                         {
                             resp = CreateTaskResponse(
-                                $"Failed to download assembly loader stub (with id: {parameters.LoaderStubId})",
+                                $"Failed to download assembly crane stub (with id: {parameters.craneStubId})",
                                 true,
                                 "error");
                         }

@@ -90,7 +90,7 @@ class KeylogtoppCommand(CommandBase):
             )
         )
         if file_resp.Success:
-            taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
+            taskData.args.add_arg("crane_stub_id", file_resp.AgentFileId)
         else:
             raise Exception(
                 "Failed to register keylog_topp stub binary: " + file_resp.Error

@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "reg_write_value"
 chapter = false
 weight = 103
@@ -33,9 +33,9 @@ The name of the value to which you wish to write the new value to. Default will 
 The new value to store in the designated Name. If this is an integer, a DWORD will be written. Otherwise, this will be a string.
 
 ## Usage
-Set the value of `OsLoaderPath` from the `HKLM:\SYSTEM\Setup` registry key to `\HardDisk4\`.
+Set the value of `OscranePath` from the `HKLM:\SYSTEM\Setup` registry key to `\HardDisk4\`.
 ```
-reg_write_value -Hive HKLM -Key SYSTEM\\Setup -Name OsLoaderPath -Value \\HardDisk4\\
+reg_write_value -Hive HKLM -Key SYSTEM\\Setup -Name OscranePath -Value \\HardDisk4\\
 ```
 
 ## MITRE ATT&CK Mapping

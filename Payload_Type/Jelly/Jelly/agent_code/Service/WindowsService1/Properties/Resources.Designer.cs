@@ -63,9 +63,9 @@ namespace WindowsService1.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] loader {
+        internal static byte[] crane {
             get {
-                object obj = ResourceManager.GetObject("loader", resourceCulture);
+                object obj = ResourceManager.GetObject("crane", resourceCulture);
                 return ((byte[])(obj));
             }
         }

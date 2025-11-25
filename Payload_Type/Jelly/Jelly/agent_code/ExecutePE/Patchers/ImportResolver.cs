@@ -23,7 +23,7 @@ namespace ExecutePE.Patchers
         private readonly List<string> _originalModules = new List<string>();
         private readonly IATHooks _iatHooks = new();
 
-        public void ResolveImports(PELoader pe, long currentBase)
+        public void ResolveImports(PEcrane pe, long currentBase)
         {
             // Save the current loaded modules so can unload new ones afterwards
             var currentProcess = Process.GetCurrentProcess();

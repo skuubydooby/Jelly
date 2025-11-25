@@ -164,9 +164,9 @@ class ExecutePECommand(CommandBase):
             self.agent_code_path / "PrintSpoofer_x64.exe"
         )
         if platform.system() == "Windows":
-            shellcode_path = "C:\\Mythic\\Jelly\\temp\\loader.bin"
+            shellcode_path = "C:\\Mythic\\Jelly\\temp\\crane.bin"
         else:
-            shellcode_path = "/tmp/loader.bin"
+            shellcode_path = "/tmp/crane.bin"
 
         if platform.system() == "Windows":
             donutPath = os.path.abspath(self.agent_code_path / "donut.exe")
@@ -228,7 +228,7 @@ class ExecutePECommand(CommandBase):
                 )
             )
             if file_resp.Success:
-                taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
+                taskData.args.add_arg("crane_stub_id", file_resp.AgentFileId)
             else:
                 raise Exception(
                     "Failed to register ExecutePE shellcode: " + file_resp.Error

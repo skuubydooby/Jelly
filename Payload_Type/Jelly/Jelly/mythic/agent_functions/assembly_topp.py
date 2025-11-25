@@ -104,7 +104,7 @@ class AssemblytoppCommand(CommandBase):
     cmd = "assembly_topp"
     needs_admin = False
     help_cmd = "assembly_topp [pid] [assembly] [args]"
-    description = "topp the unmanaged assembly loader into a remote process. The loader will then execute the .NET binary in the context of the topped process."
+    description = "topp the unmanaged assembly crane into a remote process. The crane will then execute the .NET binary in the context of the topped process."
     version = 3
     author = "@djhohnstein"
     argument_class = AssemblytoppArguments
@@ -148,7 +148,7 @@ class AssemblytoppCommand(CommandBase):
             FileContents=donutPic
         ))
         if file_resp.Success:
-            taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
+            taskData.args.add_arg("crane_stub_id", file_resp.AgentFileId)
         else:
             raise Exception("Failed to register assembly_topp DLL: " + file_resp.Error)
         originalGroupNameIsDefault = taskData.args.get_parameter_group_name() == "Default"

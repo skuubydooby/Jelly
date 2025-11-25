@@ -11,7 +11,7 @@ Artifacts Generated: Process topp
 
 ## Summary
 
-topp the .NET assembly loader into a remote process and execute an assembly registered with `register_file`. This assembly is topped into the remote process using the topping technique currently specified by `get_topping_techniques`.
+topp the .NET assembly crane into a remote process and execute an assembly registered with `register_file`. This assembly is topped into the remote process using the topping technique currently specified by `get_topping_techniques`.
 
 ### Arguments (Positional or Popup)
 

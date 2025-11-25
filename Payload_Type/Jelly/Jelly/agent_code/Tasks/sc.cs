@@ -402,7 +402,7 @@ namespace Tasks
             SERVICE_AUTO_START = 0x00000002,
 
             /// <summary>
-            /// A device driver started by the system loader. This value is valid only for driver services.
+            /// A device driver started by the system crane. This value is valid only for driver services.
             /// </summary>
             SERVICE_BOOT_START = 0x00000000,
 

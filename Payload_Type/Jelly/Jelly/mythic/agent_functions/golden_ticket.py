@@ -118,12 +118,12 @@
 #                                               file=base64.b64encode(converted_dll).decode(),
 #                                               delete_after_fetch=True)
 #         if file_resp.status == MythicStatus.Success:
-#             task.args.add_arg("loader_stub_id", file_resp.response['agent_file_id'])
+#             task.args.add_arg("crane_stub_id", file_resp.response['agent_file_id'])
 #         else:
 #             raise Exception("Failed to register Mimikatz DLL: " + file_resp.error)
 #         # task.display_params = "/dc:{} /domain:{} /user:{}".format(self.args.get_arg)
 #         display_str = ""
-#         no_display = ["loader_stub_id", "pipe_name", "sacrificial_logon"]
+#         no_display = ["crane_stub_id", "pipe_name", "sacrificial_logon"]
 #         for arg in task.args.args:
 #             varg = task.args.get_arg(arg)
 #             if varg and arg not in no_display:

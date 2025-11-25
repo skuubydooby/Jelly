@@ -27,7 +27,7 @@ class Jelly(PayloadType):
     note = """
 A fully featured .NET 4.0 compatible training agent. Version: {}. 
 NOTE: P2P Not compatible with v2.2 agents! 
-NOTE: v2.3.2+ has a different bof loader than 2.3.1 and are incompatible since their arguments are different
+NOTE: v2.3.2+ has a different bof crane than 2.3.1 and are incompatible since their arguments are different
     """.format(semver)
     supports_dynamic_loading = True
     shellcode_format_options = ["Binary", "Base64", "C", "Ruby", "Python", "Powershell", "C#", "Hex"]
@@ -268,13 +268,13 @@ NOTE: v2.3.2+ has a different bof loader than 2.3.1 and are incompatible since t
                                                              self.get_parameter("output_type"),
                                                              self.get_parameter("adjust_filename"))
                 else:
-                    shellcode_path = "{}/loader.bin".format(agent_build_path.name)
+                    shellcode_path = "{}/crane.bin".format(agent_build_path.name)
                     donutPath = os.path.abspath(self.agent_code_path / "donut")
                     command = "chmod 777 {}; chmod +x {}".format(donutPath, donutPath)
                     proc = await asyncio.create_subprocess_shell(command, stdout=asyncio.subprocess.PIPE,
                                                                  stderr=asyncio.subprocess.PIPE)
                     stdout, stderr = await proc.communicate()
-                    command = "{} -x3 -k2 -o loader.bin -i {}".format(donutPath, output_path)
+                    command = "{} -x3 -k2 -o crane.bin -i {}".format(donutPath, output_path)
                     if self.get_parameter('output_type') == "Shellcode":
                         command += f" -f{self.shellcode_format_options.index(self.get_parameter('shellcode_format')) + 1}"
                     command += f" -b{self.shellcode_bypass_options.index(self.get_parameter('shellcode_bypass')) + 1}"
@@ -321,7 +321,7 @@ NOTE: v2.3.2+ has a different bof loader than 2.3.1 and are incompatible since t
                                 / "Service"
                                 / "WindowsService1"
                                 / "Resources"
-                                / "loader.bin"
+                                / "crane.bin"
                             )
                             shutil.move(shellcode_path, working_path)
                             if self.get_parameter('debug'):

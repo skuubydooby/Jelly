@@ -47,7 +47,7 @@ execute_coff -Coff dir.x64.o -Function go -Timeout 30 -Arguments wchar:C:\\
 - T1027
 
 ## Detailed Summary
-The `execute_coff` command uses a Object File loader to execute object files within a new thread and returning output back to the agent using the implementation of Beacon functions.
+The `execute_coff` command uses a Object File crane to execute object files within a new thread and returning output back to the agent using the implementation of Beacon functions.
 
 ### Resources
 - [RunOF](https://github.com/nettitude/RunOF)

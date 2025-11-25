@@ -9,11 +9,11 @@ namespace ExecutePE.Patchers
     internal class PEMapper
     {
         private IntPtr _codebase;
-        private PELoader? _pe;
+        private PEcrane? _pe;
 
-        public void MapPEIntoMemory(byte[] unpacked, out PELoader peLoader, out long currentBase)
+        public void MapPEIntoMemory(byte[] unpacked, out PEcrane pecrane, out long currentBase)
         {
-            _pe = peLoader = new PELoader(unpacked);
+            _pe = pecrane = new PEcrane(unpacked);
             _codebase = NativeDeclarations.VirtualAlloc(IntPtr.Zero, _pe.OptionalHeader64.SizeOfImage,
                 NativeDeclarations.MEM_COMMIT, NativeDeclarations.PAGE_READWRITE);
             currentBase = _codebase.ToInt64();
@@ -55,7 +55,7 @@ namespace ExecutePE.Patchers
                 }
 
                 // Discard sections marked as discardable
-                if (_pe.ImageSectionHeaders[i].Characteristics.HasFlag(PELoader.SectionFlags.IMAGE_SCN_MEM_DISCARDABLE))
+                if (_pe.ImageSectionHeaders[i].Characteristics.HasFlag(PEcrane.SectionFlags.IMAGE_SCN_MEM_DISCARDABLE))
                 {
                     continue;
                 }
@@ -76,8 +76,8 @@ namespace ExecutePE.Patchers
                 }
 
                 // Copy the section data if the section has initialized data or code
-                if (_pe.ImageSectionHeaders[i].Characteristics.HasFlag(PELoader.SectionFlags.IMAGE_SCN_CNT_INITIALIZED_DATA)
-                    || _pe.ImageSectionHeaders[i].Characteristics.HasFlag(PELoader.SectionFlags.IMAGE_SCN_CNT_CODE))
+                if (_pe.ImageSectionHeaders[i].Characteristics.HasFlag(PEcrane.SectionFlags.IMAGE_SCN_CNT_INITIALIZED_DATA)
+                    || _pe.ImageSectionHeaders[i].Characteristics.HasFlag(PEcrane.SectionFlags.IMAGE_SCN_CNT_CODE))
                 {
                     Marshal.Copy(_pe.RawBytes, (int)_pe.ImageSectionHeaders[i].PointerToRawData, y, (int)_pe.ImageSectionHeaders[i].SizeOfRawData);
                 }
@@ -167,7 +167,7 @@ namespace ExecutePE.Patchers
             for (var i = 0; i < _pe?.FileHeader.NumberOfSections; i++)
             {
                 // Skip over discarded sections since they are not mapped in
-                if (_pe.ImageSectionHeaders[i].Characteristics.HasFlag(PELoader.SectionFlags.IMAGE_SCN_MEM_DISCARDABLE))
+                if (_pe.ImageSectionHeaders[i].Characteristics.HasFlag(PEcrane.SectionFlags.IMAGE_SCN_MEM_DISCARDABLE))
                 {
                     continue;
                 }

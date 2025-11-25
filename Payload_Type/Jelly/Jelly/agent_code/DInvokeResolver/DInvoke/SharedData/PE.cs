@@ -134,7 +134,7 @@ namespace DInvokeResolver.DInvoke.Data
             public UInt32 SizeOfStackCommit;
             public UInt32 SizeOfHeapReserve;
             public UInt32 SizeOfHeapCommit;
-            public UInt32 LoaderFlags;
+            public UInt32 craneFlags;
             public UInt32 NumberOfRvaAndSizes;
 
             public IMAGE_DATA_DIRECTORY ExportTable;
@@ -185,7 +185,7 @@ namespace DInvokeResolver.DInvoke.Data
             public UInt64 SizeOfStackCommit;
             public UInt64 SizeOfHeapReserve;
             public UInt64 SizeOfHeapCommit;
-            public UInt32 LoaderFlags;
+            public UInt32 craneFlags;
             public UInt32 NumberOfRvaAndSizes;
 
             public IMAGE_DATA_DIRECTORY ExportTable;

@@ -10,7 +10,7 @@ Artifacts Generated: Process topp
 {{% /notice %}}
 
 ## Summary
-Execute PowerShell commands in a remote process. Leverages the currently set topping technique to topp the PowerShell loader.
+Execute PowerShell commands in a remote process. Leverages the currently set topping technique to topp the PowerShell crane.
 
 ### Arguments (Positional or Popup)
 #### PID

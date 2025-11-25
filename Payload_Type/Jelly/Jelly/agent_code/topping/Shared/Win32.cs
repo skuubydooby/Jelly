@@ -166,7 +166,7 @@ namespace topping.Shared
             public UInt64 SizeOfStackCommit;
             public UInt64 SizeOfHeapReserve;
             public UInt64 SizeOfHeapCommit;
-            public UInt32 LoaderFlags;
+            public UInt32 craneFlags;
             public UInt32 NumberOfRvaAndSizes;
 
             public IMAGE_DATA_DIRECTORY ExportTable;

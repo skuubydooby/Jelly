@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace ExecutePE.Internals
 {
-    public class PELoader
+    public class PEcrane
     {
         public struct IMAGE_DOS_HEADER
         {
@@ -80,7 +80,7 @@ namespace ExecutePE.Internals
             public uint SizeOfStackCommit;
             public uint SizeOfHeapReserve;
             public uint SizeOfHeapCommit;
-            public uint LoaderFlags;
+            public uint craneFlags;
             public uint NumberOfRvaAndSizes;
 
             public IMAGE_DATA_DIRECTORY ExportTable;
@@ -131,7 +131,7 @@ namespace ExecutePE.Internals
             public ulong SizeOfStackCommit;
             public ulong SizeOfHeapReserve;
             public ulong SizeOfHeapCommit;
-            public uint LoaderFlags;
+            public uint craneFlags;
             public uint NumberOfRvaAndSizes;
 
             public IMAGE_DATA_DIRECTORY ExportTable;
@@ -208,7 +208,7 @@ namespace ExecutePE.Internals
 
         private byte[] rawbytes;
 
-        public PELoader(byte[] fileBytes)
+        public PEcrane(byte[] fileBytes)
         {
             // Read in the DLL or EXE and get the timestamp
             using (var stream = new MemoryStream(fileBytes, 0, fileBytes.Length))

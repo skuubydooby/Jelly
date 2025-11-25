@@ -214,7 +214,7 @@ class ExecuteAssemblyCommand(CommandBase):
             )
         )
         if file_resp.Success:
-            taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
+            taskData.args.add_arg("crane_stub_id", file_resp.AgentFileId)
         else:
             raise Exception(
                 "Failed to register execute_assembly binary: " + file_resp.Error

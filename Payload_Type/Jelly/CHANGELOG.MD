@@ -382,7 +382,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Removed RunOF and replaced it with TrustedSec's coffee project
 - Adjusted the execute_coff command to pack args instead of sending down a typed array
-- Added a reflective loader for the coffee.dll (with Claude)
+- Added a reflective crane for the coffee.dll (with Claude)
 - Updated execute_pe's remote loaded code to hook more exit functions and load files better (with Claude)
 
 ## [v2.3.1] - 2025-02-11

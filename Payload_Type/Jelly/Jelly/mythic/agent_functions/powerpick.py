@@ -43,7 +43,7 @@ class PowerpickCommand(CommandBase):
     cmd = "powerpick"
     needs_admin = False
     help_cmd = "powerpick [command]"
-    description = "topp PowerShell loader assembly into a sacrificial process and execute [command]."
+    description = "topp PowerShell crane assembly into a sacrificial process and execute [command]."
     version = 2
     author = "@djhohnstein"
     argument_class = PowerpickArguments
@@ -86,7 +86,7 @@ class PowerpickCommand(CommandBase):
             DeleteAfterFetch=True
         ))
         if file_resp.Success:
-            taskData.args.add_arg("loader_stub_id", file_resp.AgentFileId)
+            taskData.args.add_arg("crane_stub_id", file_resp.AgentFileId)
         else:
             raise Exception("Failed to register PowerShellHost.exe: " + file_resp.Error)
 

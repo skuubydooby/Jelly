@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -970,7 +970,7 @@ public static class PERunner
             public uint SizeOfStackCommit;
             public uint SizeOfHeapReserve;
             public uint SizeOfHeapCommit;
-            public uint LoaderFlags;
+            public uint craneFlags;
             public uint NumberOfRvaAndSizes;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
             public IMAGE_DATA_DIRECTORY[] DataDirectory;
@@ -1006,7 +1006,7 @@ public static class PERunner
             public ulong SizeOfStackCommit;
             public ulong SizeOfHeapReserve;
             public ulong SizeOfHeapCommit;
-            public uint LoaderFlags;
+            public uint craneFlags;
             public uint NumberOfRvaAndSizes;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
             public IMAGE_DATA_DIRECTORY[] DataDirectory;

@@ -276,7 +276,7 @@ namespace Tasks
                     DebugHelp.DebugWriteLine(e.Message);
                 }
                 var sleeve = new CrossAppDomainDelegate(Console.Beep);
-                var ace = new CrossAppDomainDelegate(ActivateLoader);
+                var ace = new CrossAppDomainDelegate(Activatecrane);
 
                 RuntimeHelpers.PrepareDelegate(sleeve);
                 RuntimeHelpers.PrepareDelegate(ace);
@@ -351,8 +351,8 @@ namespace Tasks
             AppDomain.Unload(oDomain);
         }
 #endregion
-#region Cross AppDomain Loader
-        static void ActivateLoader()
+#region Cross AppDomain crane
+        static void Activatecrane()
         {
             void OnWrite(object sender, object args)
             {
@@ -412,13 +412,13 @@ namespace Tasks
             {
                 if (!asm.FullName.Contains("mscorlib") && !asm.FullName.Contains("Jelly"))
                 {
-                    var costuraLoader = asm.GetType("Costura.AssemblyLoader", false);
-                    if (costuraLoader != null)
+                    var costuracrane = asm.GetType("Costura.Assemblycrane", false);
+                    if (costuracrane != null)
                     {
-                        var costuraLoaderMethod = costuraLoader.GetMethod("Attach", BindingFlags.Public | BindingFlags.Static);
-                        if (costuraLoaderMethod != null)
+                        var costuracraneMethod = costuracrane.GetMethod("Attach", BindingFlags.Public | BindingFlags.Static);
+                        if (costuracraneMethod != null)
                         {
-                            costuraLoaderMethod.Invoke(null, new object[] { });   
+                            costuracraneMethod.Invoke(null, new object[] { });   
                         }
                     }
 
